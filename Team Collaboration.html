@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Collaboration Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --lemon-green: #A4F99B;
+            --dark-black: #111;
+            --light-black: #222;
+            --white: #fff;
+            --gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            z-index: 50;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--lemon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-black);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+        }
+
+        /* Team Projects Layout */
+        .team-projects {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .project-container {
+            display: flex;
+            flex-direction: column;
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background-color: var(--dark-black);
+            color: var(--white);
+        }
+
+        .project-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-role {
+            color: var(--lemon-green);
+            font-weight: 500;
+        }
+
+        .project-content {
+            display: flex;
+            flex-direction: row;
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
+        }
+
+        .project-image {
+            flex: 1;
+            min-height: 400px;
+            background-color: var(--gray);
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .project-description {
+            margin-bottom: 2rem;
+            color: var(--light-black);
+        }
+
+        .view-details-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .view-details-btn:hover {
+            background-color: #8de5a6;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-black);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        /* Project Details */
+        .project-detail {
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--light-black);
+        }
+
+        .role-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .role-item {
+            background-color: var(--gray);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tools-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-tag {
+            background-color: var(--gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .testimonial {
+            background-color: var(--gray);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            text-align: right;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .project-content {
+                flex-direction: column;
+            }
+            .project-image {
+                min-height: 300px;
+            }
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">logo</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Team Collaboration Projects Section -->
+    <section id="team-collaboration">
+        <div class="container">
+            <h2 class="section-title">Team Collaboration Projects</h2>
+            <p class="section-description">Showcasing cross-functional team projects where collaboration brought innovative solutions to life.</p>
+            
+            <div class="team-projects">
+                <!-- Project 1 -->
+                <div class="project-container" data-project="brandsuite">
+                    <div class="project-header">
+                        <h3 class="project-name">BrandSuite Collab</h3>
+                        <p class="project-role">Design Lead & Frontend Developer</p>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-image">
+                            <img src="https://source.unsplash.com/random/800x600/?branding,team" alt="BrandSuite Collab">
+                        </div>
+                        <div class="project-info">
+                            <p class="project-description">Worked with a design team to develop a full brand identity and responsive landing page for a SaaS product. Collaborated closely with UX researchers and developers to ensure brand consistency across all digital touchpoints.</p>
+                            <a href="#" class="view-details-btn" data-project="brandsuite">Explore Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-container" data-project="shopmates">
+                    <div class="project-header">
+                        <h3 class="project-name">ShopMates Platform</h3>
+                        <p class="project-role">UI/UX Designer & Prototyper</p>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-image">
+                            <img src="https://source.unsplash.com/random/800x600/?e-commerce,team" alt="ShopMates Platform">
+                        </div>
+                        <div class="project-info">
+                            <p class="project-description">Collaborated with developers and marketers on an e-commerce dashboard UI/UX project, ensuring seamless user flow. Conducted user testing sessions and iterated designs based on feedback from both technical and marketing teams.</p>
+                            <a href="#" class="view-details-btn" data-project="shopmates">Explore Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="projectModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">logo</div>
+            <p>Collaborating to create impactful digital experiences that combine creativity with technical excellence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project data
+        const projects = {
+            'brandsuite': {
+                title: 'BrandSuite Collab',
+                role: 'Design Lead & Frontend Developer',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?branding,website,1', caption: 'Desktop View' },
+                    { src: 'https://source.unsplash.com/random/400x800/?branding,website,2', caption: 'Mobile View' }
+                ],
+                teamRoles: [
+                    { role: 'Design Lead', name: 'Me', description: 'Responsible for overall design direction, brand guidelines, and frontend implementation.' },
+                    { role: 'UX Researcher', name: 'Sarah Kim', description: 'Conducted user research and created journey maps that informed design decisions.' },
+                    { role: 'Backend Developer', name: 'Michael Chen', description: 'Implemented API endpoints and database integration for the platform.' },
+                    { role: 'Product Manager', name: 'David Lee', description: 'Coordinated between teams and managed project timelines and deliverables.' }
+                ],
+                tools: ['Figma', 'Webflow', 'Trello', 'Slack', 'Jira'],
+                workflow: 'Weekly sprint cycles with daily standups. Design and development worked in parallel with regular sync sessions to ensure alignment. Used collaborative design tools for real-time feedback.',
+                testimonial: {
+                    text: 'Working with [Your Name] was an absolute pleasure. Their ability to bridge the gap between creative design and technical implementation was crucial to our project\'s success. They consistently delivered innovative solutions that impressed both our internal team and clients.',
+                    author: 'David Lee, Product Manager'
+                }
+            },
+            'shopmates': {
+                title: 'ShopMates Platform',
+                role: 'UI/UX Designer & Prototyper',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?dashboard,website,1', caption: 'Admin Dashboard' },
+                    { src: 'https://source.unsplash.com/random/400x800/?dashboard,website,2', caption: 'Mobile Analytics' }
+                ],
+                teamRoles: [
+                    { role: 'UI/UX Designer', name: 'Me', description: 'Created wireframes, high-fidelity prototypes, and final UI components. Conducted user testing sessions.' },
+                    { role: 'Frontend Developer', name: 'James Wilson', description: 'Implemented responsive interfaces and integrated with backend APIs.' },
+                    { role: 'Marketing Specialist', name: 'Emily Zhang', description: 'Provided requirements for user journeys and conversion optimization.' },
+                    { role: 'Backend Developer', name: 'Robert Taylor', description: 'Built server-side functionality and database architecture.' }
+                ],
+                tools: ['Figma', 'React', 'Miro', 'Slick', 'Webpack'],
+                workflow: 'Agile methodology with two-week sprints. Design and development worked in staggered sprints to allow design handoff. Used collaborative whiteboarding tools for real-time problem-solving sessions.',
+                testimonial: {
+                    text: '[Your Name] has an exceptional talent for creating intuitive and visually appealing interfaces. Their willingness to iterate based on feedback and their ability to communicate complex design concepts to non-designers made them a valuable asset to our team.',
+                    author: 'James Wilson, Frontend Developer'
+                }
+            }
+        };
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.querySelector('.modal-body');
+            const closeModal = document.querySelector('.close-modal');
+            const viewButtons = document.querySelectorAll('.view-details-btn');
+
+            // Close modal when clicking the X or outside
+            function closeModalFunc() {
+                modal.classList.remove('active');
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModalFunc();
+            });
+
+            // Open modal with project data
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const projectId = this.getAttribute('data-project');
+                    const project = projects[projectId];
+
+                    let screenshotsHTML = '';
+                    project.screenshots.forEach(screenshot => {
+                        screenshotsHTML += `
+                            <div class="screenshot">
+                                <img src="${screenshot.src}" alt="${project.title} ${screenshot.caption}">
+                                <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #666;">${screenshot.caption}</div>
+                            </div>
+                        `;
+                    });
+
+                    let rolesHTML = '';
+                    project.teamRoles.forEach(teamMember => {
+                        rolesHTML += `
+                            <div class="role-item">
+                                <h4>${teamMember.role}</h4>
+                                <p><strong>${teamMember.name}:</strong> ${teamMember.description}</p>
+                            </div>
+                        `;
+                    });
+
+                    let toolsHTML = '';
+                    project.tools.forEach(tool => {
+                        toolsHTML += `<span class="tool-tag">${tool}</span>`;
+                    });
+
+                    modalBody.innerHTML = `
+                        <div class="modal-header">
+                            <h2 class="modal-title">${project.title}</h2>
+                            <p>${project.role}</p>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Role Breakdown</h3>
+                            <div class="role-breakdown">
+                                ${rolesHTML}
+                            </div>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Project Screenshots</h3>
+                            <div class="screenshots">
+                                ${screenshotsHTML}
+                            </div>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Tools & Technologies</h3>
+                            <div class="tools-list">
+                                ${toolsHTML}
+                            </div>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Team Workflow</h3>
+                            <p>${project.workflow}</p>
+                        </div>
+
+                        ${project.testimonial ? `
+                        <div class="project-detail">
+                            <div class="testimonial">
+                                <p class="testimonial-text">${project.testimonial.text}</p>
+                                <p class="testimonial-author">${project.testimonial.author}</p>
+                            </div>
+                        </div>
+                        ` : ''}
+                    `;
+
+                    modal.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

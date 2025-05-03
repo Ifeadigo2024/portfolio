@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Design Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --lemon-green: #A4F99B;
+            --dark-black: #111;
+            --light-black: #222;
+            --white: #fff;
+            --off-white: #f9f9f9;
+            --gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            z-index: 50;
+            min-width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--lemon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-black);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+        }
+
+        /* Poster Grid Layout */
+        .posters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .poster-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .poster-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .poster-thumbnail {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .poster-info {
+            padding: 1.2rem;
+        }
+
+        .poster-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        .poster-context {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .view-poster-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-poster-btn:hover {
+            background-color: #8de5a6;
+            transform: scale(1.05);
+        }
+
+        .hover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(164, 249, 155, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .poster-card:hover .hover-overlay {
+            opacity: 1;
+        }
+
+        /* Lightbox Styles */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .lightbox-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .posters-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .posters-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">logo</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Poster Design Projects Section -->
+    <section id="poster-designs">
+        <div class="container">
+            <h2 class="section-title">Poster Design Projects</h2>
+            <p class="section-description">Showcasing a diverse collection of poster designs created for various events and clients.</p>
+            
+            <div class="posters-grid">
+                <!-- Poster 1 -->
+                <div class="poster-card" data-poster="gospel-concert">
+                    <img src="https://source.unsplash.com/random/600x800/?concert,poster" alt="Gospel Concert Flyer" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Gospel Concert Flyer</h3>
+                        <p class="poster-context">Bold, energetic faith-based event poster</p>
+                    </div>
+                </div>
+
+                <!-- Poster 2 -->
+                <div class="poster-card" data-poster="crave-frost">
+                    <img src="https://source.unsplash.com/random/600x800/?bakery,poster" alt="Crave & Frost Promo Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Crave & Frost Promo Poster</h3>
+                        <p class="poster-context">Soft and sweet promo design for bakery product</p>
+                    </div>
+                </div>
+
+                <!-- Poster 3 -->
+                <div class="poster-card" data-poster="independence-day">
+                    <img src="https://source.unsplash.com/random/600x800/?independence,poster" alt="Independence Day Bash" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Independence Day Bash</h3>
+                        <p class="poster-context">Patriotic and celebratory poster layout</p>
+                    </div>
+                </div>
+
+                <!-- Poster 4 -->
+                <div class="poster-card" data-poster="sound-god-tour">
+                    <img src="https://source.unsplash.com/random/600x800/?music,poster" alt="Sound God Tour (Runtown)" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Sound God Tour (Runtown)</h3>
+                        <p class="poster-context">Stylish, dark-themed music promo flyer</p>
+                    </div>
+                </div>
+
+                <!-- Poster 5 -->
+                <div class="poster-card" data-poster="women-of-grace">
+                    <img src="https://source.unsplash.com/random/600x800/?conference,poster" alt="Women of Grace Revival" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Women of Grace Revival</h3>
+                        <p class="poster-context">Elegant poster design for a religious conference</p>
+                    </div>
+                </div>
+
+                <!-- Poster 6 -->
+                <div class="poster-card" data-poster="afropop-party">
+                    <img src="https://source.unsplash.com/random/600x800/?party,poster" alt="AfroPop Party Night" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">AfroPop Party Night</h3>
+                        <p class="poster-context">Vibrant club event poster with urban energy</p>
+                    </div>
+                </div>
+
+                <!-- Poster 7 -->
+                <div class="poster-card" data-poster="business-webinar">
+                    <img src="https://source.unsplash.com/random/600x800/?webinar,poster" alt="Business Webinar Invite" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Business Webinar Invite</h3>
+                        <p class="poster-context">Professional and minimal corporate event flyer</p>
+                    </div>
+                </div>
+
+                <!-- Poster 8 -->
+                <div class="poster-card" data-poster="church-anniversary">
+                    <img src="https://source.unsplash.com/random/600x800/?church,poster" alt="Church Anniversary Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Church Anniversary Poster</h3>
+                        <p class="poster-context">Warm and celebratory layout for a special church event</p>
+                    </div>
+                </div>
+
+                <!-- Poster 9 -->
+                <div class="poster-card" data-poster="fashionxpress-sale">
+                    <img src="https://source.unsplash.com/random/600x800/?fashion,sale" alt="FashionXpress Summer Sale" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">FashionXpress Summer Sale</h3>
+                        <p class="poster-context">Trendy promo poster for a fashion brand</p>
+                    </div>
+                </div>
+
+                <!-- Poster 10 -->
+                <div class="poster-card" data-poster="techplug-conference">
+                    <img src="https://source.unsplash.com/random/600x800/?tech,conference" alt="TechPlug Conference Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">TechPlug Conference Poster</h3>
+                        <p class="poster-context">Futuristic poster for a tech networking event</p>
+                    </div>
+                </div>
+
+                <!-- Poster 11 -->
+                <div class="poster-card" data-poster="birthday-bash">
+                    <img src="https://source.unsplash.com/random/600x800/?birthday,poster" alt="Birthday Bash Combo Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Birthday Bash Combo Poster</h3>
+                        <p class="poster-context">Celebrating birthday + PhD + retirement</p>
+                    </div>
+                </div>
+
+                <!-- Poster 12 -->
+                <div class="poster-card" data-poster="cultural-sunday">
+                    <img src="https://source.unsplash.com/random/600x800/?cultural,event" alt="Cultural Sunday Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Cultural Sunday Poster</h3>
+                        <p class="poster-context">Culturally rich design with tribal patterns</p>
+                    </div>
+                </div>
+
+                <!-- Poster 13 -->
+                <div class="poster-card" data-poster="valentine-promo">
+                    <img src="https://source.unsplash.com/random/600x800/?valentine,poster" alt="Valentine Promo Flyer" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Valentine Promo Flyer</h3>
+                        <p class="poster-context">Romantic and elegant design with soft accents</p>
+                    </div>
+                </div>
+
+                <!-- Poster 14 -->
+                <div class="poster-card" data-poster="back-to-school">
+                    <img src="https://source.unsplash.com/random/600x800/?school,poster" alt="Back-to-School Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Back-to-School Poster</h3>
+                        <p class="poster-context">Educational event design with youthful vibe</p>
+                    </div>
+                </div>
+
+                <!-- Poster 15 -->
+                <div class="poster-card" data-poster="black-friday">
+                    <img src="https://source.unsplash.com/random/600x800/?black-friday,poster" alt="Black Friday Mega Deal" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Black Friday Mega Deal</h3>
+                        <p class="poster-context">Bold and catchy discount flyer layout</p>
+                    </div>
+                </div>
+
+                <!-- Poster 16 -->
+                <div class="poster-card" data-poster="sunday-worship">
+                    <img src="https://source.unsplash.com/random/600x800/?worship,poster" alt="Sunday Worship Night" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Sunday Worship Night</h3>
+                        <p class="poster-context">Inspirational design for a worship music event</p>
+                    </div>
+                </div>
+
+                <!-- Poster 17 -->
+                <div class="poster-card" data-poster="food-fest">
+                    <img src="https://source.unsplash.com/random/600x800/?food,festival" alt="Food Fest Poster" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Food Fest Poster</h3>
+                        <p class="poster-context">Colorful and tasty poster for a food exhibition</p>
+                    </div>
+                </div>
+
+                <!-- Poster 18 -->
+                <div class="poster-card" data-poster="parfait-stall">
+                    <img src="https://source.unsplash.com/random/600x800/?parfait,event" alt="Parfait Stall Announcement (EBIBLELUXE)" class="poster-thumbnail">
+                    <div class="hover-overlay">
+                        <button class="view-poster-btn">View Poster</button>
+                    </div>
+                    <div class="poster-info">
+                        <h3 class="poster-title">Parfait Stall Announcement (EBIBLELUXE)</h3>
+                        <p class="poster-context">Sweet, branded flyer for event presence</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="posterLightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">logo</div>
+            <p>Crafting compelling visual stories through design that connect with audiences and deliver results.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lightbox functionality
+            const lightbox = document.getElementById('posterLightbox');
+            const lightboxImg = lightbox.querySelector('.lightbox-image');
+            const closeLightbox = document.querySelector('.close-lightbox');
+            const viewButtons = document.querySelectorAll('.view-poster-btn');
+            const posterCards = document.querySelectorAll('.poster-card');
+            const posterThumbnails = document.querySelectorAll('.poster-thumbnail');
+
+            // Set the lightbox image source based on the clicked poster
+            function openLightbox(posterSrc, posterAlt) {
+                lightboxImg.src = posterSrc;
+                lightboxImg.alt = posterAlt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+
+            // Close the lightbox
+            function closeLightboxFunc() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+
+            // Event listener for close button
+            closeLightbox.addEventListener('click', closeLightboxFunc);
+
+            // Event listener for clicking outside the lightbox content
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightboxFunc();
+                }
+            });
+
+            // Event listeners for view buttons
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const posterCard = this.closest('.poster-card');
+                    const posterThumbnail = posterCard.querySelector('.poster-thumbnail');
+                    openLightbox(posterThumbnail.src, posterThumbnail.alt);
+                });
+            });
+
+            // Event listeners for poster thumbnails (direct click)
+            posterThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    openLightbox(this.src, this.alt);
+                });
+            });
+
+            // Escape key to close lightbox
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightboxFunc();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

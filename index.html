@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Creator Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lemon': '#CFFF04',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-in-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black bg-opacity-90 z-50 shadow-md">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <img style="height: 40px;" src="./assets/YG-LOGO-WHITE.png" alt="">
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-white hover:text-lemon">Home</a>
+                    <a href="#about" class="nav-link text-white hover:text-lemon">About</a>
+                    <a href="#portfolio" class="nav-link text-white hover:text-lemon">Portfolio</a>
+                    <a href="#services" class="nav-link text-white hover:text-lemon">Services</a>
+                    <a href="#testimonials" class="nav-link text-white hover:text-lemon">Testimonials</a>
+                    <a href="#contact" class="nav-link text-white hover:text-lemon">Contact</a>
+                </div>
+                <button class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
+        <div class="container mx-auto px-6 text-center animate-fade-in">
+            <!-- Added image here -->
+            <img src="./assets/display-photo.jpg" alt="Logo" class="w-32 h-32 rounded-full mx-auto mb-4 animate-pulse">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">I'M A <span class="text-lemon">DIGITAL CREATOR</span></h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-slide-up" style="animation-delay: 0.2s;">Crafting compelling digital experiences that captivate and convert</p>
+            <div class="animate-slide-up" style="animation-delay: 0.4s;">
+                <a href="#portfolio" class="btn-hover inline-block bg-lemon text-black font-bold py-3 px-8 rounded-full mr-4 mb-4">View My Work</a>
+                <a href="#contact" class="btn-hover inline-block border-2 border-lemon text-lemon font-bold py-3 px-8 rounded-full">Hire Me</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">About <span class="text-lemon">Me</span></h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-fade-in">
+                    <div class="relative">
+                        <div class="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+                            <img src="./assets/display-photo.jpg" alt="Profile" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-5 -right-5 bg-lemon w-32 h-32 rounded-full flex items-center justify-center">
+                            <span class="text-black font-bold text-2xl">5+ Years</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animate-fade-in" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-bold mb-4">Who Am I?</h3>
+                    <p class="text-gray-600 mb-6">I'm a passionate digital creator with expertise in web design, content creation, and digital marketing. My mission is to help brands establish a powerful online presence through creative and strategic digital solutions.</p>
+                    <p class="text-gray-600 mb-8">With over 5 years of experience, I've worked with startups, small businesses, and established brands to create digital experiences that not only look great but also drive results.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-lemon mr-2"></i>
+                            <span>Web Development</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-lemon mr-2"></i>
+                            <span>Graphics Designer</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-lemon mr-2"></i>
+                            <span>Branding</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-lemon mr-2"></i>
+                            <span>Digital Marketing</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-hover inline-block bg-black text-white font-bold py-3 px-8 rounded-full">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">My <span class="text-lemon">Portfolio</span></h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Here's a selection of my recent work. Each project represents a unique challenge and creative solution.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Project 1" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Website</h3>
+                        <p class="text-gray-600 mb-4">A complete online store with custom design and seamless checkout experience.</p>
+                        <a href="./E-commerce Website.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Project 2" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Brand Identity</h3>
+                        <p class="text-gray-600 mb-4">Complete branding package including logo, color scheme, and brand guidelines.</p>
+                        <a href="./Brand Identity.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./assets/logo-design.png" alt="Project 3" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Poster Design</h3>
+                        <p class="text-gray-600 mb-4">User interface design for a fitness tracking mobile application.</p>
+                        <a href="./Poster Design.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./assets/Social-Media-Campaign.jpg" alt="Project 4" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Social Media Campaign</h3>
+                        <p class="text-gray-600 mb-4">Complete social media strategy and content creation for a tech startup.</p>
+                        <a href="./Social Media Campaign.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 5 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="./assets/Corporate-Website.jpg" alt="Project 5" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Corporate Website</h3>
+                        <p class="text-gray-600 mb-4">Modern and responsive website for a financial services company.</p>
+                        <a href="./Corporate Website.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item bg-white rounded-lg overflow-hidden shadow-md">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 6" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Team Collaboration</h3>
+                        <p class="text-gray-600 mb-4">Creative direction for a team collaboration platform redesign.</p>
+                        <a href="./Team Collaboration.html" class="text-lemon font-semibold hover:underline">View Project →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="btn-hover inline-block bg-lemon text-black font-bold py-3 px-8 rounded-full">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">My <span class="text-lemon">Services</span></h2>
+            <p class="text-center text-gray-300 mb-16 max-w-2xl mx-auto">I offer a range of digital services to help your business grow and succeed in the online world.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">UI/UX Design</h3>
+                    <p class="text-gray-300 mb-4">Creating intuitive and beautiful user interfaces that enhance user experience and drive engagement.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Web Development</h3>
+                    <p class="text-gray-300 mb-4">Building responsive, fast, and secure websites that work perfectly across all devices.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bullhorn text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Digital Marketing</h3>
+                    <p class="text-gray-300 mb-4">Strategic marketing campaigns to increase your online visibility and attract more customers.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-camera text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Content Creation</h3>
+                    <p class="text-gray-300 mb-4">High-quality visual and written content that tells your brand's story effectively.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">SEO Optimization</h3>
+                    <p class="text-gray-300 mb-4">Improving your website's visibility in search engines to drive organic traffic.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-gray-900 rounded-lg p-8 hover:bg-gray-800 transition-all duration-300">
+                    <div class="w-16 h-16 bg-lemon rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-black text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">App Design</h3>
+                    <p class="text-gray-300 mb-4">Designing mobile applications that are both functional and visually appealing.</p>
+                    <a href="#" class="text-lemon font-semibold hover:underline">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Client <span class="text-lemon">Testimonials</span></h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Don't just take my word for it. Here's what my clients have to say about working with me.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-gray-50 rounded-lg p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Sarah Johnson</h4>
+                            <p class="text-gray-500 text-sm">CEO, TechStart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"Working with this digital creator was a game-changer for our business. The website they designed increased our conversion rate by 40% in just three months."</p>
+                    <div class="flex text-lemon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-gray-50 rounded-lg p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Michael Chen</h4>
+                            <p class="text-gray-500 text-sm">Marketing Director, BrandCo</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The digital marketing strategy developed for us was incredibly effective. We saw a 300% increase in qualified leads within the first quarter."</p>
+                    <div class="flex text-lemon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-gray-50 rounded-lg p-8 shadow-sm">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Emily Rodriguez</h4>
+                            <p class="text-gray-500 text-sm">Founder, StyleHub</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">"The branding work exceeded all our expectations. Our new visual identity has completely transformed how customers perceive our company."</p>
+                    <div class="flex text-lemon">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Get In <span class="text-lemon">Touch</span></h2>
+            <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">Have a project in mind or want to discuss potential collaboration? I'd love to hear from you.</p>
+            
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <div class="bg-white rounded-lg shadow-md p-8 h-full">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 bg-lemon bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-lemon"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Location</h4>
+                                <p class="text-gray-600">San Francisco, CA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 bg-lemon bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-lemon"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <p class="text-gray-600">hello@digitalcreator.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 bg-lemon bg-opacity-20 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-lemon"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Follow Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                                    <i class="fab fa-dribbble"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                                    <i class="fab fa-behance"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-white rounded-lg shadow-md p-8">
+                        <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                        <form>
+                            <div class="mb-6">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-lemon">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Your Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-lemon">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-lemon">
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-lemon"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn-hover w-full bg-lemon text-black font-bold py-3 px-6 rounded-lg">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-bold text-lemon mb-2">DC.</div>
+                    <p class="text-gray-400">© 2023 Digital Creator. All rights reserved.</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:space-x-8 space-y-4 md:space-y-0">
+                    <a href="#home" class="text-gray-400 hover:text-lemon transition-colors">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-lemon transition-colors">About</a>
+                    <a href="#portfolio" class="text-gray-400 hover:text-lemon transition-colors">Portfolio</a>
+                    <a href="#services" class="text-gray-400 hover:text-lemon transition-colors">Services</a>
+                    <a href="#contact" class="text-gray-400 hover:text-lemon transition-colors">Contact</a>
+                </div>
+                
+                <div class="mt-6 md:mt-0 flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                        <i class="fab fa-behance"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 text-white rounded-full flex items-center justify-center hover:bg-lemon hover:text-black transition-colors">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            // Set initial state for animations
+            const animatedElements = document.querySelectorAll('[class*="animate-"]');
+            animatedElements.forEach(el => {
+                if (el.classList.contains('animate-fade-in')) {
+                    el.style.opacity = '0';
+                }
+                if (el.classList.contains('animate-slide-up')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                }
+            });
+            
+            // Trigger on load and scroll
+            animateOnScroll();
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Mobile menu toggle (would need more complete implementation)
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            mobileMenuButton.addEventListener('click', function() {
+                // This would toggle a mobile menu in a real implementation
+                alert('Mobile menu would open here in a complete implementation');
+            });
+        });
+    </script>
+</body>
+</html>

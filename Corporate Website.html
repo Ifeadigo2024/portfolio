@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporate Website Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --lemon-green: #A4F99B;
+            --dark-black: #111;
+            --light-black: #222;
+            --white: #fff;
+            --off-white: #f9f9f9;
+            --gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            z-index: 50;
+            min-width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--lemon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-black);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .view-project-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .view-project-btn:hover {
+            background-color: #8de5a6;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-black);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        /* Project Details */
+        .project-detail {
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--light-black);
+        }
+
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .screenshot img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .features-list li:before {
+            content: "•";
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .view-live-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .view-live-btn:hover {
+            background-color: #8de5a6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .screenshots {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">logo</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Corporate Website Projects Section -->
+    <section id="corporate-websites">
+        <div class="container">
+            <h2 class="section-title">Corporate Website Projects</h2>
+            <p class="section-description">Showcasing strategic corporate website designs that balance functionality with aesthetic appeal.</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-project="trove">
+                    <img src="https://source.unsplash.com/random/600x400/?interior,website" alt="Trove Interiors" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">Trove Interiors</h3>
+                        <p class="project-description">A clean, luxury interior brand site with gallery and appointment form.</p>
+                        <a href="#" class="view-project-btn" data-project="trove">View Website</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-project="ecosavvy">
+                    <img src="https://source.unsplash.com/random/600x400/?sustainability,website" alt="EcoSavvy Solutions" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">EcoSavvy Solutions</h3>
+                        <p class="project-description">Modern sustainability company site with service breakdown and blog.</p>
+                        <a href="#" class="view-project-btn" data-project="ecosavvy">View Website</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-project="urbanink">
+                    <img src="https://source.unsplash.com/random/600x400/?media,agency" alt="UrbanInk Studios" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">UrbanInk Studios</h3>
+                        <p class="project-description">Media agency website with bold visuals, case studies, and client logos.</p>
+                        <a href="#" class="view-project-btn" data-project="urbanink">View Website</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-project="fitfuel">
+                    <img src="https://source.unsplash.com/random/600x400/?health,website" alt="FitFuel Corporate" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">FitFuel Corporate</h3>
+                        <p class="project-description">Health brand website with programs, FAQs, and testimonials.</p>
+                        <a href="#" class="view-project-btn" data-project="fitfuel">View Website</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-project="cravefrost">
+                    <img src="https://source.unsplash.com/random/600x400/?bakery,website" alt="Crave & Frost Enterprise" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">Crave & Frost Enterprise</h3>
+                        <p class="project-description">Professional landing site for bakery's B2B services and orders.</p>
+                        <a href="#" class="view-project-btn" data-project="cravefrost">View Website</a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-project="techplug">
+                    <img src="https://source.unsplash.com/random/600x400/?tech,consulting" alt="TechPlug Systems" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">TechPlug Systems</h3>
+                        <p class="project-description">Sleek IT consulting firm site with services, team bio, and inquiry form.</p>
+                        <a href="#" class="view-project-btn" data-project="techplug">View Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="projectModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">logo</div>
+            <p>Creating effective digital solutions that drive business results and enhance online presence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Project data
+        const projects = {
+            'trove': {
+                title: 'Trove Interiors',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?interior,website,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?interior,website,mobile', type: 'Mobile' }
+                ],
+                purpose: 'A clean, luxury interior brand site with gallery and appointment form.',
+                features: [
+                    'Responsive design for all devices',
+                    'Interactive interior gallery with filtering',
+                    'Online appointment booking system',
+                    'Seamless contact integration',
+                    'Blog section for design inspiration'
+                ],
+                liveUrl: '#'
+            },
+            'ecosavvy': {
+                title: 'EcoSavvy Solutions',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?sustainability,website,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?sustainability,website,mobile', type: 'Mobile' }
+                ],
+                purpose: 'Modern sustainability company site with service breakdown and blog.',
+                features: [
+                    'Service offerings with detailed descriptions',
+                    'Blog with sustainability insights',
+                    'Homepage impact metrics display',
+                    'Client testimonials section',
+                    'Newsletter subscription form'
+                ],
+                liveUrl: '#'
+            },
+            'urbanink': {
+                title: 'UrbanInk Studios',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?media,agency,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?media,agency,mobile', type: 'Mobile' }
+                ],
+                purpose: 'Media agency website with bold visuals, case studies, and client logos.',
+                features: [
+                    'Dynamic portfolio case studies',
+                    'Client carousel with logos',
+                    'Team member showcase',
+                    'Service offerings with animations',
+                    'Contact and project inquiry form'
+                ],
+                liveUrl: '#'
+            },
+            'fitfuel': {
+                title: 'FitFuel Corporate',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?health,website,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?health,website,mobile', type: 'Mobile' }
+                ],
+                purpose: 'Health brand website with programs, FAQs, and testimonials.',
+                features: [
+                    'Program offerings with detailed descriptions',
+                    'Frequently asked questions section',
+                    'Client testimonials with photos',
+                    'Blog with health tips',
+                    'Newsletter subscription form'
+                ],
+                liveUrl: '#'
+            },
+            'cravefrost': {
+                title: 'Crave & Frost Enterprise',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?bakery,website,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?bakery,website,mobile', type: 'Mobile' }
+                ],
+                purpose: 'Professional landing site for bakery\'s B2B services and orders.',
+                features: [
+                    'Wholesale ordering system',
+                    'Product catalog with specifications',
+                    'B2B service descriptions',
+                    'Delivery information section',
+                    'Contact form for inquiries'
+                ],
+                liveUrl: '#'
+            },
+            'techplug': {
+                title: 'TechPlug Systems',
+                screenshots: [
+                    { src: 'https://source.unsplash.com/random/800x600/?tech,consulting,desktop', type: 'Desktop' },
+                    { src: 'https://source.unsplash.com/random/400x800/?tech,consulting,mobile', type: 'Mobile' }
+                ],
+                purpose: 'Sleek IT consulting firm site with services, team bio, and inquiry form.',
+                features: [
+                    'Service offerings with icons',
+                    'Team member bios with photos',
+                    'Project inquiry form',
+                    'Case studies section',
+                    'Client testimonials'
+                ],
+                liveUrl: '#'
+            }
+        };
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('projectModal');
+            const modalBody = document.querySelector('.modal-body');
+            const closeModal = document.querySelector('.close-modal');
+            const viewButtons = document.querySelectorAll('.view-project-btn');
+
+            // Close modal when clicking the X or outside
+            function closeModalFunc() {
+                modal.classList.remove('active');
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModalFunc();
+            });
+
+            // Open modal with project data
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const projectId = this.getAttribute('data-project');
+                    const project = projects[projectId];
+
+                    let screenshotsHTML = '';
+                    project.screenshots.forEach(screenshot => {
+                        screenshotsHTML += `
+                            <div class="screenshot">
+                                <img src="${screenshot.src}" alt="${project.title} ${screenshot.type} View">
+                                <div style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem; color: #666;">${screenshot.type} View</div>
+                            </div>
+                        `;
+                    });
+
+                    let featuresHTML = '';
+                    project.features.forEach(feature => {
+                        featuresHTML += `<li>${feature}</li>`;
+                    });
+
+                    modalBody.innerHTML = `
+                        <div class="modal-header">
+                            <h2 class="modal-title">${project.title}</h2>
+                            <p>${project.purpose}</p>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Website Screenshots</h3>
+                            <div class="screenshots">
+                                ${screenshotsHTML}
+                            </div>
+                        </div>
+
+                        <div class="project-detail">
+                            <h3 class="detail-title">Notable Features</h3>
+                            <ul class="features-list">
+                                ${featuresHTML}
+                            </ul>
+                        </div>
+
+                        <a href="${project.liveUrl}" class="view-live-btn" target="_blank">View Live Website</a>
+                    `;
+
+                    modal.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

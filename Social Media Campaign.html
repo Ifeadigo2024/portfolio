@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Campaigns</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --lemon-green: #A4F99B;
+            --dark-black: #111;
+            --light-black: #222;
+            --white: #fff;
+            --off-white: #f9f9f9;
+            --gray: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            z-index: 50;
+            min-width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--lemon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-black);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+        }
+
+        /* Campaign Grid */
+        .campaigns-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .campaign-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .campaign-thumbnail {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .campaign-info {
+            padding: 1.5rem;
+        }
+
+        .campaign-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        .campaign-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .view-campaign-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .view-campaign-btn:hover {
+            background-color: #8de5a6;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-black);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        /* Campaign Details */
+        .campaign-detail {
+            margin-bottom: 2rem;
+        }
+
+        .detail-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--light-black);
+        }
+
+        .posts-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--lemon-green) var(--gray);
+        }
+
+        .posts-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .posts-carousel::-webkit-scrollbar-track {
+            background: var(--gray);
+            border-radius: 4px;
+        }
+
+        .posts-carousel::-webkit-scrollbar-thumb {
+            background-color: var(--lemon-green);
+            border-radius: 4px;
+        }
+
+        .carousel-post {
+            min-width: 250px;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .carousel-post img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .platform-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-tag {
+            background-color: var(--gray);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--lemon-green);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .moodboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mood-item {
+            height: 120px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .mood-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial {
+            background-color: var(--off-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #8de5a6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .campaigns-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .carousel-post {
+                min-width: 200px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">logo</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Social Media Campaigns Section -->
+    <section id="social-media">
+        <div class="container">
+            <h2 class="section-title">Social Media Campaigns</h2>
+            <p class="section-description">Showcasing strategic social media campaigns designed to engage audiences and drive results.</p>
+            
+            <div class="campaigns-grid">
+                <!-- Campaign 1 -->
+                <div class="campaign-card" data-campaign="glowbeauty">
+                    <img src="https://source.unsplash.com/random/600x400/?beauty,instagram" alt="GlowBeauty Launch Tease" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">GlowBeauty Launch Tease</h3>
+                        <p class="campaign-description">Instagram countdown campaign with story highlights and influencer buzz.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="glowbeauty">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 2 -->
+                <div class="campaign-card" data-campaign="fitfuel">
+                    <img src="https://source.unsplash.com/random/600x400/?fitness,instagram" alt="FitFuel Weekly Tips" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">FitFuel Weekly Tips</h3>
+                        <p class="campaign-description">Fitness content series with branded tips and workout challenges.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="fitfuel">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 3 -->
+                <div class="campaign-card" data-campaign="cravefrost">
+                    <img src="https://source.unsplash.com/random/600x400/?bakery,instagram" alt="Crave & Frost Promo Blast" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">Crave & Frost Promo Blast</h3>
+                        <p class="campaign-description">Sweet carousel for promoting cakes and holiday offers.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="cravefrost">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 4 -->
+                <div class="campaign-card" data-campaign="trove">
+                    <img src="https://source.unsplash.com/random/600x400/?interior,instagram" alt="Trove Interiors Visual Diary" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">Trove Interiors Visual Diary</h3>
+                        <p class="campaign-description">IG visual diary series with quote overlays and mood images.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="trove">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 5 -->
+                <div class="campaign-card" data-campaign="urbanink">
+                    <img src="https://source.unsplash.com/random/600x400/?media,instagram" alt="UrbanInk Content Teaser" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">UrbanInk Content Teaser</h3>
+                        <p class="campaign-description">High-energy media launch posts and motion designs for reels.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="urbanink">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 6 -->
+                <div class="campaign-card" data-campaign="ecosavvy">
+                    <img src="https://source.unsplash.com/random/600x400/?eco,instagram" alt="EcoSavvy EcoTips" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">EcoSavvy EcoTips</h3>
+                        <p class="campaign-description">Sustainable living posts with clean layouts and soft branding.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="ecosavvy">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 7 -->
+                <div class="campaign-card" data-campaign="fashionxpress">
+                    <img src="https://source.unsplash.com/random/600x400/?fashion,instagram" alt="FashionXpress Lookbook Drop" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">FashionXpress Lookbook Drop</h3>
+                        <p class="campaign-description">Trendy fashion series with matching reels covers and stories.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="fashionxpress">View Campaign</a>
+                    </div>
+                </div>
+
+                <!-- Campaign 8 -->
+                <div class="campaign-card" data-campaign="techplug">
+                    <img src="https://source.unsplash.com/random/600x400/?tech,instagram" alt="TechPlug Giveaway Campaign" class="campaign-thumbnail">
+                    <div class="campaign-info">
+                        <h3 class="campaign-title">TechPlug Giveaway Campaign</h3>
+                        <p class="campaign-description">Sleek promotional series with CTA focus and countdown posts.</p>
+                        <a href="#" class="view-campaign-btn" data-campaign="techplug">View Campaign</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="campaignModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">logo</div>
+            <p>Creating effective social media campaigns that drive engagement and deliver results.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Campaign data
+        const campaigns = {
+            'glowbeauty': {
+                title: 'GlowBeauty Launch Tease',
+                description: 'Instagram countdown campaign with story highlights and influencer buzz.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?beauty,product,1',
+                    'https://source.unsplash.com/random/600x800/?beauty,product,2',
+                    'https://source.unsplash.com/random/600x800/?beauty,product,3',
+                    'https://source.unsplash.com/random/600x800/?beauty,product,4'
+                ],
+                strategy: 'Create anticipation for product launch through a 7-day countdown with exclusive teaser content and influencer partnerships.',
+                platforms: ['Instagram', 'Stories', 'Reels'],
+                metrics: {
+                    reach: '125k',
+                    engagement: '8.3%',
+                    followers: '+15k'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?beauty,pink',
+                    'https://source.unsplash.com/random/300x300/?beauty,soft',
+                    'https://source.unsplash.com/random/300x300/?beauty,luxury'
+                ],
+                testimonial: {
+                    text: 'The campaign exceeded our expectations. The team captured our brand voice perfectly and delivered a comprehensive social strategy that boosted our product launch by 300%.',
+                    author: 'Sarah Johnson, Marketing Director at GlowBeauty'
+                }
+            },
+            'fitfuel': {
+                title: 'FitFuel Weekly Tips',
+                description: 'Fitness content series with branded tips and workout challenges.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?fitness,workout,1',
+                    'https://source.unsplash.com/random/600x800/?fitness,tip,2',
+                    'https://source.unsplash.com/random/600x800/?fitness,challenge,3',
+                    'https://source.unsplash.com/random/600x800/?fitness,motivation,4'
+                ],
+                strategy: 'Build community engagement through value-driven content that establishes brand authority in fitness niche.',
+                platforms: ['Instagram', 'Facebook', 'Pinterest'],
+                metrics: {
+                    reach: '87k',
+                    engagement: '12.1%',
+                    save_rate: '24%'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?fitness,vibrant',
+                    'https://source.unsplash.com/random/300x300/?fitness,energy',
+                    'https://source.unsplash.com/random/300x300/?fitness,results'
+                ],
+                testimonial: {
+                    text: 'The FitFuel Weekly Tips series has become our most engaged content type. The strategic approach to content planning and design has transformed our social presence and increased our conversion rates significantly.',
+                    author: 'David Kim, Content Manager at FitFuel'
+                }
+            },
+            'cravefrost': {
+                title: 'Crave & Frost Promo Blast',
+                description: 'Sweet carousel for promoting cakes and holiday offers.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?bakery,cake,1',
+                    'https://source.unsplash.com/random/600x800/?bakery,offer,2',
+                    'https://source.unsplash.com/random/600x800/?bakery,holiday,3',
+                    'https://source.unsplash.com/random/600x800/?bakery,deal,4'
+                ],
+                strategy: 'Drive holiday sales through visually appealing product showcases and limited-time offers.',
+                platforms: ['Instagram', 'Stories', 'Facebook'],
+                metrics: {
+                    reach: '68k',
+                    engagement: '9.7%',
+                    conversion: '18%'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?bakery,warm',
+                    'https://source.unsplash.com/random/300x300/?bakery,sweet',
+                    'https://source.unsplash.com/random/300x300/?bakery,celebration'
+                ],
+                testimonial: {
+                    text: 'The holiday promo campaign delivered exceptional results. The creative designs perfectly captured our brand aesthetic while driving impressive sales conversions during our busiest season.',
+                    author: 'Emily Rodriguez, Social Media Manager at Crave & Frost'
+                }
+            },
+            'trove': {
+                title: 'Trove Interiors Visual Diary',
+                description: 'IG visual diary series with quote overlays and mood images.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?interior,design,1',
+                    'https://source.unsplash.com/random/600x800/?interior,quote,2',
+                    'https://source.unsplash.com/random/600x800/?interior,inspiration,3',
+                    'https://source.unsplash.com/random/600x800/?interior,room,4'
+                ],
+                strategy: 'Build brand identity through curated visual content that showcases design philosophy and aesthetic.',
+                platforms: ['Instagram', 'Pinterest'],
+                metrics: {
+                    reach: '92k',
+                    engagement: '11.4%',
+                    save_rate: '31%'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?interior,minimal',
+                    'https://source.unsplash.com/random/300x300/?interior,elegant',
+                    'https://source.unsplash.com/random/300x300/?interior,luxury'
+                ],
+                testimonial: {
+                    text: 'The Visual Diary series has become our signature content type. The consistent creative direction has significantly improved our brand recognition and positioned us as thought leaders in interior design.',
+                    author: 'Michael Chen, Creative Director at Trove Interiors'
+                }
+            },
+            'urbanink': {
+                title: 'UrbanInk Content Teaser',
+                description: 'High-energy media launch posts and motion designs for reels.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?media,launch,1',
+                    'https://source.unsplash.com/random/600x800/?media,teaser,2',
+                    'https://source.unsplash.com/random/600x800/?media,motion,3',
+                    'https://source.unsplash.com/random/600x800/?media,trailer,4'
+                ],
+                strategy: 'Generate buzz for media company launch through dynamic content and motion graphics.',
+                platforms: ['Instagram', 'Reels', 'YouTube'],
+                metrics: {
+                    reach: '145k',
+                    engagement: '15.2%',
+                    shares: '8.7k'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?media,dynamic',
+                    'https://source.unsplash.com/random/300x300/?media,energy',
+                    'https://source.unsplash.com/random/300x300/?media,creative'
+                ],
+                testimonial: {
+                    text: 'The content teaser campaign was instrumental in our successful launch. The innovative designs and strategic timing helped us gain significant traction and establish our presence in a competitive market.',
+                    author: 'James Wilson, Marketing Lead at UrbanInk Studios'
+                }
+            },
+            'ecosavvy': {
+                title: 'EcoSavvy EcoTips',
+                description: 'Sustainable living posts with clean layouts and soft branding.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?eco,tip,1',
+                    'https://source.unsplash.com/random/600x800/?eco,living,2',
+                    'https://source.unsplash.com/random/600x800/?eco,sustainable,3',
+                    'https://source.unsplash.com/random/600x800/?eco,planet,4'
+                ],
+                strategy: 'Educate and inspire audience about sustainable living through accessible content and actionable tips.',
+                platforms: ['Instagram', 'Facebook', 'Pinterest'],
+                metrics: {
+                    reach: '76k',
+                    engagement: '10.8%',
+                    save_rate: '27%'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?eco,nature',
+                    'https://source.unsplash.com/random/300x300/?eco,clean',
+                    'https://source.unsplash.com/random/300x300/?eco,minimal'
+                ],
+                testimonial: {
+                    text: 'The EcoTips series has become our cornerstone content. The clean design and educational approach have helped us build a loyal community while reinforcing our brand commitment to sustainability.',
+                    author: 'Lisa Thompson, Content Strategist at EcoSavvy'
+                }
+            },
+            'fashionxpress': {
+                title: 'FashionXpress Lookbook Drop',
+                description: 'Trendy fashion series with matching reels covers and stories.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?fashion,trend,1',
+                    'https://source.unsplash.com/random/600x800/?fashion,lookbook,2',
+                    'https://source.unsplash.com/random/600x800/?fashion,outfit,3',
+                    'https://source.unsplash.com/random/600x800/?fashion,style,4'
+                ],
+                strategy: 'Showcase seasonal collections through cohesive visual storytelling across multiple formats.',
+                platforms: ['Instagram', 'Reels', 'Stories'],
+                metrics: {
+                    reach: '112k',
+                    engagement: '13.5%',
+                    profile_visits: '+42%'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?fashion,trendy',
+                    'https://source.unsplash.com/random/300x300/?fashion,modern',
+                    'https://source.unsplash.com/random/300x300/?fashion,stylish'
+                ],
+                testimonial: {
+                    text: 'The Lookbook Drop campaign transformed our social presence. The consistent visual language across all formats has significantly improved our engagement rates and established us as a go-to source for fashion inspiration.',
+                    author: 'Rachel Kim, Social Media Manager at FashionXpress'
+                }
+            },
+            'techplug': {
+                title: 'TechPlug Giveaway Campaign',
+                description: 'Sleek promotional series with CTA focus and countdown posts.',
+                posts: [
+                    'https://source.unsplash.com/random/600x800/?tech,giveaway,1',
+                    'https://source.unsplash.com/random/600x800/?tech,countdown,2',
+                    'https://source.unsplash.com/random/600x800/?tech,product,3',
+                    'https://source.unsplash.com/random/600x800/?tech,offer,4'
+                ],
+                strategy: 'Drive website traffic and email sign-ups through a 5-day giveaway with progressive unlocking.',
+                platforms: ['Instagram', 'Facebook', 'Twitter'],
+                metrics: {
+                    reach: '134k',
+                    engagement: '17.8%',
+                    signups: '+28k'
+                },
+                moodboard: [
+                    'https://source.unsplash.com/random/300x300/?tech,modern',
+                    'https://source.unsplash.com/random/300x300/?tech,future',
+                    'https://source.unsplash.com/random/300x300/?tech,premium'
+                ],
+                testimonial: {
+                    text: 'The giveaway campaign delivered exceptional results for our email list growth. The strategic countdown approach and visually appealing design elements created urgency while maintaining our brand aesthetics.',
+                    author: 'Chris Morgan, Digital Marketing Manager at TechPlug'
+                }
+            }
+        };
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('campaignModal');
+            const modalBody = document.querySelector('.modal-body');
+            const closeModal = document.querySelector('.close-modal');
+            const viewButtons = document.querySelectorAll('.view-campaign-btn');
+
+            // Close modal when clicking the X or outside
+            function closeModalFunc() {
+                modal.classList.remove('active');
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModalFunc();
+            });
+
+            // Open modal with campaign data
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const campaignId = this.getAttribute('data-campaign');
+                    const campaign = campaigns[campaignId];
+
+                    let postsHTML = '';
+                    campaign.posts.forEach(postSrc => {
+                        postsHTML += `
+                            <div class="carousel-post">
+                                <img src="${postSrc}" alt="${campaign.title} social media post">
+                            </div>
+                        `;
+                    });
+
+                    let platformsHTML = '';
+                    campaign.platforms.forEach(platform => {
+                        platformsHTML += `
+                            <span class="platform-tag">${platform}</span>
+                        `;
+                    });
+
+                    let metricsHTML = '';
+                    Object.entries(campaign.metrics).forEach(([key, value]) => {
+                        metricsHTML += `
+                            <div class="metric">
+                                <div class="metric-value">${value}</div>
+                                <div class="metric-label">${key}</div>
+                            </div>
+                        `;
+                    });
+
+                    let moodboardHTML = '';
+                    campaign.moodboard.forEach(moodSrc => {
+                        moodboardHTML += `
+                            <div class="mood-item">
+                                <img src="${moodSrc}" alt="Moodboard reference">
+                            </div>
+                        `;
+                    });
+
+                    modalBody.innerHTML = `
+                        <div class="modal-header">
+                            <h2 class="modal-title">${campaign.title}</h2>
+                            <p>${campaign.description}</p>
+                        </div>
+
+                        <div class="campaign-detail">
+                            <h3 class="detail-title">Campaign Strategy</h3>
+                            <p>${campaign.strategy}</p>
+                        </div>
+
+                        <div class="campaign-detail">
+                            <h3 class="detail-title">Sample Posts</h3>
+                            <div class="posts-carousel">
+                                ${postsHTML}
+                            </div>
+                        </div>
+
+                        <div class="campaign-detail">
+                            <h3 class="detail-title">Platforms</h3>
+                            <div class="platform-tags">
+                                ${platformsHTML}
+                            </div>
+                        </div>
+
+                        ${Object.keys(campaign.metrics).length > 0 ? `
+                        <div class="campaign-detail">
+                            <h3 class="detail-title">Campaign Results</h3>
+                            <div class="metrics">
+                                ${metricsHTML}
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        ${campaign.moodboard.length > 0 ? `
+                        <div class="campaign-detail">
+                            <h3 class="detail-title">Creative Direction</h3>
+                            <div class="moodboard">
+                                ${moodboardHTML}
+                            </div>
+                        </div>
+                        ` : ''}
+
+                        ${campaign.testimonial ? `
+                        <div class="campaign-detail">
+                            <div class="testimonial">
+                                <p>"${campaign.testimonial.text}"</p>
+                                <p style="margin-top: 0.5rem; font-weight: bold;">${campaign.testimonial.author}</p>
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        <a href="#" class="download-btn" style="display: block; text-align: center; max-width: 200px; margin: 0 auto;">Download Case Study</a>
+                    `;
+
+                    modal.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Identity Projects</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --lemon-green: #A4F99B;
+            --dark-black: #111;
+            --light-black: #222;
+            --white: #fff;
+            --off-white: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-black);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            z-index: 50;
+            min-width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: var(--lemon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--lemon-green);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--dark-black);
+        }
+
+        .section-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: #555;
+        }
+
+        /* Project Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .view-project-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .view-project-btn:hover {
+            background-color: #8de5a6;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-backdrop.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-black);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light-black);
+        }
+
+        /* Brand Identity Elements */
+        .brand-elements {
+            margin-bottom: 2rem;
+        }
+
+        .element-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--light-black);
+        }
+
+        .logos-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-mockup {
+            width: calc(33.333% - 1rem);
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+        }
+
+        .typography-examples {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .type-example {
+            margin-bottom: 0.5rem;
+        }
+
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .use-case {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .use-case img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .testimonial {
+            background-color: var(--off-white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--lemon-green);
+            color: var(--dark-black);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #8de5a6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-black);
+            color: var(--white);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .logo-mockup {
+                width: calc(50% - 1rem);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">logo</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Brand Identity Projects Section -->
+    <section id="brand-identity">
+        <div class="container">
+            <h2 class="section-title">Brand Identity Projects</h2>
+            <p class="section-description">Showcasing brand identity designs that balance creativity with strategic purpose.</p>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-project="crave-and-frost">
+                    <img src="https://source.unsplash.com/random/600x400/?bakery,logo" alt="Crave & Frost" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">Crave & Frost</h3>
+                        <p class="project-description">A sweet and elegant brand for a modern bakery — soft colors and playful type.</p>
+                        <a href="#" class="view-project-btn" data-project="crave-and-frost">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-project="ecosavvy">
+                    <img src="https://source.unsplash.com/random/600x400/?sustainable,logo" alt="EcoSavvy" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">EcoSavvy</h3>
+                        <p class="project-description">An earthy, minimal brand identity for a sustainable lifestyle brand.</p>
+                        <a href="#" class="view-project-btn" data-project="ecosavvy">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-project="urbanink">
+                    <img src="https://source.unsplash.com/random/600x400/?media,logo" alt="UrbanInk Studios" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">UrbanInk Studios</h3>
+                        <p class="project-description">A bold, edgy logo and brand look for a creative media company.</p>
+                        <a href="#" class="view-project-btn" data-project="urbanink">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-project="trove-interiors">
+                    <img src="https://source.unsplash.com/random/600x400/?interior,logo" alt="Trove Interiors" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">Trove Interiors</h3>
+                        <p class="project-description">A luxurious and clean identity for a home décor and interior brand.</p>
+                        <a href="#" class="view-project-btn" data-project="trove-interiors">View Project</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-project="fitfuel">
+                    <img src="https://source.unsplash.com/random/600x400/?fitness,logo" alt="FitFuel Nutrition" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">FitFuel Nutrition</h3>
+                        <p class="project-description">A vibrant, high-energy fitness product brand with strong color contrasts.</p>
+                        <a href="#" class="view-project-btn" data-project="fitfuel">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-backdrop" id="brandModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo">logo</div>
+            <p>Creating impactful brand identities that resonate with audiences and drive business growth.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Brand project data
+        const brandProjects = {
+            'crave-and-frost': {
+                title: 'Crave & Frost',
+                logoMocks: [
+                    { src: 'https://source.unsplash.com/random/300x200/?bakery,logo,white', bg: 'white' },
+                    { src: 'https://source.unsplash.com/random/300x200/?bakery,logo,black', bg: 'black' },
+                    { src: 'https://source.unsplash.com/random/300x200/?bakery,pink', bg: '#ffd6e0' }
+                ],
+                colors: [
+                    '#ffd6e0', '#ff8da1', '#ff5c7a', '#ff2d55', '#ffffff'
+                ],
+                typography: [
+                    'Primary: Playfair Display (400, 700)',
+                    'Secondary: Poppins (300, 400, 500)',
+                    'Headings: 36-48px, Tracking: -0.5px',
+                    'Body: 16-18px, Line Height: 1.6'
+                ],
+                useCases: [
+                    'https://source.unsplash.com/random/400x300/?bakery,packaging',
+                    'https://source.unsplash.com/random/400x300/?bakery,menu',
+                    'https://source.unsplash.com/random/400x300/?bakery,business-card',
+                    'https://source.unsplash.com/random/400x300/?bakery,social-media'
+                ],
+                testimonial: {
+                    text: 'The branding exceeded our expectations. The team captured our vision perfectly and delivered a comprehensive brand package that has transformed our bakery\'s presence.',
+                    author: 'Sarah Johnson, Owner of Crave & Frost'
+                },
+                downloadLink: '#'
+            },
+            'ecosavvy': {
+                title: 'EcoSavvy',
+                logoMocks: [
+                    { src: 'https://source.unsplash.com/random/300x200/?eco,logo,white', bg: 'white' },
+                    { src: 'https://source.unsplash.com/random/300x200/?eco,logo,black', bg: 'black' },
+                    { src: 'https://source.unsplash.com/random/300x200/?eco,green', bg: '#43a047' }
+                ],
+                colors: [
+                    '#e8f5e9', '#c8e6c9', '#a5d6a7', '#81c784', '#43a047'
+                ],
+                typography: [
+                    'Primary: Montserrat (400, 700)',
+                    'Secondary: Roboto (300, 400)',
+                    'Headings: 32-40px, Tracking: 1px',
+                    'Body: 16px, Line Height: 1.8'
+                ],
+                useCases: [
+                    'https://source.unsplash.com/random/400x300/?eco,packaging',
+                    'https://source.unsplash.com/random/400x300/?eco,website',
+                    'https://source.unsplash.com/random/400x300/?eco,business-card',
+                    'https://source.unsplash.com/random/400x300/?eco,social-media'
+                ],
+                testimonial: {
+                    text: 'The brand identity created for EcoSavvy perfectly captures our commitment to sustainability. The clean design and thoughtful color palette have elevated our brand perception among our target audience.',
+                    author: 'Michael Chen, Founder of EcoSavvy'
+                },
+                downloadLink: '#'
+            },
+            'urbanink': {
+                title: 'UrbanInk Studios',
+                logoMocks: [
+                    { src: 'https://source.unsplash.com/random/300x200/?media,logo,white', bg: 'white' },
+                    { src: 'https://source.unsplash.com/random/300x200/?media,logo,black', bg: 'black' },
+                    { src: 'https://source.unsplash.com/random/300x200/?media,dark', bg: '#212121' }
+                ],
+                colors: [
+                    '#212121', '#333333', '#444444', '#616161', '#bdbdbd'
+                ],
+                typography: [
+                    'Primary: Raleway (300, 700, 900)',
+                    'Secondary: Oswald (400, 700)',
+                    'Headings: 42-52px, All Caps',
+                    'Body: 18px, Line Height: 1.5'
+                ],
+                useCases: [
+                    'https://source.unsplash.com/random/400x300/?media,website',
+                    'https://source.unsplash.com/random/400x300/?media,poster',
+                    'https://source.unsplash.com/random/400x300/?media,stationery',
+                    'https://source.unsplash.com/random/400x300/?media,branding'
+                ],
+                testimonial: {
+                    text: 'UrbanInk Studios needed a powerful, modern brand identity that reflected our creative edge. The result was a bold logo and comprehensive brand system that has significantly boosted our credibility in the industry.',
+                    author: 'James Wilson, Creative Director at UrbanInk Studios'
+                },
+                downloadLink: '#'
+            },
+            'trove-interiors': {
+                title: 'Trove Interiors',
+                logoMocks: [
+                    { src: 'https://source.unsplash.com/random/300x200/?interior,logo,white', bg: 'white' },
+                    { src: 'https://source.unsplash.com/random/300x200/?interior,logo,black', bg: 'black' },
+                    { src: 'https://source.unsplash.com/random/300x200/?interior,beige', bg: '#efebe9' }
+                ],
+                colors: [
+                    '#efebe9', '#d7ccc8', '#bcaaa4', '#a1887f', '#8d6e63'
+                ],
+                typography: [
+                    'Primary: Lora (400, 700)',
+                    'Secondary: Merriweather (300, 400)',
+                    'Headings: 36-44px, Italic',
+                    'Body: 16-18px, Line Height: 1.7'
+                ],
+                useCases: [
+                    'https://source.unsplash.com/random/400x300/?interior,catalog',
+                    'https://source.unsplash.com/random/400x300/?interior,website',
+                    'https://source.unsplash.com/random/400x300/?interior,business-card',
+                    'https://source.unsplash.com/random/400x300/?interior,showroom'
+                ],
+                testimonial: {
+                    text: 'The Trove Interiors brand identity perfectly captures the elegance and sophistication we wanted to convey. The comprehensive brand guidelines have become an invaluable tool for our team and partners.',
+                    author: 'Emily Rodriguez, CEO of Trove Interiors'
+                },
+                downloadLink: '#'
+            },
+            'fitfuel': {
+                title: 'FitFuel Nutrition',
+                logoMocks: [
+                    { src: 'https://source.unsplash.com/random/300x200/?fitness,logo,white', bg: 'white' },
+                    { src: 'https://source.unsplash.com/random/300x200/?fitness,logo,black', bg: 'black' },
+                    { src: 'https://source.unsplash.com/random/300x200/?fitness,purple', bg: '#7b1fa2' }
+                ],
+                colors: [
+                    '#e1bee7', '#ce93d8', '#ba68c8', '#ab47bc', '#8e24aa'
+                ],
+                typography: [
+                    'Primary: Bebas Neue (400)',
+                    'Secondary: Open Sans (600, 700)',
+                    'Headings: 44-54px, Bold',
+                    'Body: 16-18px, Line Height: 1.4'
+                ],
+                useCases: [
+                    'https://source.unsplash.com/random/400x300/?fitness,packaging',
+                    'https://source.unsplash.com/random/400x300/?fitness,app',
+                    'https://source.unsplash.com/random/400x300/?fitness,banner',
+                    'https://source.unsplash.com/random/400x300/?fitness,social'
+                ],
+                testimonial: {
+                    text: 'FitFuel Nutrition needed a brand identity that conveyed energy and reliability. The result was a dynamic visual system that has helped us stand out in a competitive market and connect with our fitness-focused audience.',
+                    author: 'David Kim, Founder of FitFuel Nutrition'
+                },
+                downloadLink: '#'
+            }
+        };
+
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('brandModal');
+            const modalBody = document.querySelector('.modal-body');
+            const closeModal = document.querySelector('.close-modal');
+            const viewButtons = document.querySelectorAll('.view-project-btn');
+
+            // Close modal when clicking the X or outside
+            function closeModalFunc() {
+                modal.classList.remove('active');
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) closeModalFunc();
+            });
+
+            // Open modal with project data
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const projectId = this.getAttribute('data-project');
+                    const project = brandProjects[projectId];
+
+                    let useCaseHTML = '';
+                    project.useCases.forEach(imgSrc => {
+                        useCaseHTML += `
+                            <div class="use-case">
+                                <img src="${imgSrc}" alt="Brand use case">
+                            </div>
+                        `;
+                    });
+
+                    let colorSwatchesHTML = '';
+                    project.colors.forEach(color => {
+                        colorSwatchesHTML += `
+                            <div class="color-swatch" style="background-color: ${color}"></div>
+                        `;
+                    });
+
+                    let typeExamplesHTML = '';
+                    project.typography.forEach(typeExample => {
+                        typeExamplesHTML += `
+                            <div class="type-example">${typeExample}</div>
+                        `;
+                    });
+
+                    modalBody.innerHTML = `
+                        <div class="modal-header">
+                            <h2 class="modal-title">${project.title}</h2>
+                        </div>
+
+                        <div class="brand-elements">
+                            <h3 class="element-title">Logo Mockups</h3>
+                            <div class="logos-container">
+                                ${project.logoMocks.map(mock => `
+                                    <img src="${mock.src}" alt="${project.title} logo on ${mock.bg} background" class="logo-mockup">
+                                `).join('')}
+                            </div>
+
+                            <h3 class="element-title">Brand Colors</h3>
+                            <div class="color-palette">
+                                ${colorSwatchesHTML}
+                            </div>
+
+                            <h3 class="element-title">Typography</h3>
+                            <div class="typography-examples">
+                                ${typeExamplesHTML}
+                            </div>
+
+                            <h3 class="element-title">Sample Use Cases</h3>
+                            <div class="use-cases">
+                                ${useCaseHTML}
+                            </div>
+
+                            ${project.testimonial ? `
+                                <div class="testimonial">
+                                    <p>"${project.testimonial.text}"</p>
+                                    <p style="margin-top: 0.5rem; font-weight: bold;">${project.testimonial.author}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <a href="${project.downloadLink}" class="download-btn" style="display: block; text-align: center; max-width: 200px; margin: 0 auto;">Download Brand Kit</a>
+                    `;
+
+                    modal.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
