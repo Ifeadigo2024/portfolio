@@ -282,22 +282,96 @@
             background-color: #8de5a6;
         }
 
-        /* Footer */
+        /* Footer styles */
         footer {
-            background-color: var(--dark-black);
-            color: var(--white);
-            padding: 3rem 0;
-            text-align: center;
+            background-color: #000;
+            padding: 2rem 5%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            color: #9F0; /* Bright yellow-green */
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .footer-copyright {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #9F0;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: #9F0;
+            color: black;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .social-icons {
+                justify-content: center;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .screenshots {
-                grid-template-columns: 1fr;
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -325,7 +399,7 @@
             <div class="projects-grid">
                 <!-- Project 1 -->
                 <div class="project-card" data-project="trove">
-                    <img src="https://source.unsplash.com/random/600x400/?interior,website" alt="Trove Interiors" class="project-image">
+                    <img src="./Trove Interiors/images/trove.jpg" alt="Trove Interiors" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">Trove Interiors</h3>
                         <p class="project-description">A clean, luxury interior brand site with gallery and appointment form.</p>
@@ -335,7 +409,7 @@
 
                 <!-- Project 2 -->
                 <div class="project-card" data-project="ecosavvy">
-                    <img src="https://source.unsplash.com/random/600x400/?sustainability,website" alt="EcoSavvy Solutions" class="project-image">
+                    <img src="./Trove Interiors/images/ecosavvy.jpg" alt="EcoSavvy Solutions" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">EcoSavvy Solutions</h3>
                         <p class="project-description">Modern sustainability company site with service breakdown and blog.</p>
@@ -345,7 +419,7 @@
 
                 <!-- Project 3 -->
                 <div class="project-card" data-project="urbanink">
-                    <img src="https://source.unsplash.com/random/600x400/?media,agency" alt="UrbanInk Studios" class="project-image">
+                    <img src="./Trove Interiors/images/UrbanInk.jpg" alt="UrbanInk Studios" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">UrbanInk Studios</h3>
                         <p class="project-description">Media agency website with bold visuals, case studies, and client logos.</p>
@@ -355,7 +429,7 @@
 
                 <!-- Project 4 -->
                 <div class="project-card" data-project="fitfuel">
-                    <img src="https://source.unsplash.com/random/600x400/?health,website" alt="FitFuel Corporate" class="project-image">
+                    <img src="./Trove Interiors/images/FitFuel.jpg" alt="FitFuel Corporate" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">FitFuel Corporate</h3>
                         <p class="project-description">Health brand website with programs, FAQs, and testimonials.</p>
@@ -365,7 +439,7 @@
 
                 <!-- Project 5 -->
                 <div class="project-card" data-project="cravefrost">
-                    <img src="https://source.unsplash.com/random/600x400/?bakery,website" alt="Crave & Frost Enterprise" class="project-image">
+                    <img src="./Trove Interiors/images/crave.jpg" alt="Crave & Frost Enterprise" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">Crave & Frost Enterprise</h3>
                         <p class="project-description">Professional landing site for bakery's B2B services and orders.</p>
@@ -375,7 +449,7 @@
 
                 <!-- Project 6 -->
                 <div class="project-card" data-project="techplug">
-                    <img src="https://source.unsplash.com/random/600x400/?tech,consulting" alt="TechPlug Systems" class="project-image">
+                    <img src="./Trove Interiors/images/TechPlug.jpg" alt="TechPlug Systems" class="project-image">
                     <div class="project-info">
                         <h3 class="project-title">TechPlug Systems</h3>
                         <p class="project-description">Sleek IT consulting firm site with services, team bio, and inquiry form.</p>
@@ -398,9 +472,42 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="logo">logo</div>
-            <p>Creating effective digital solutions that drive business results and enhance online presence.</p>
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">DC.</div>
+                <p class="footer-copyright">© 2023 Digital Creator. All rights reserved.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            
+            <div class="social-icons">
+                <a href="#" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,18c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6 S15.31,18,12,18z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,18c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6 S15.31,18,12,18z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,18c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6 S15.31,18,12,18z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12,18c-3.31,0-6-2.69-6-6s2.69-6,6-6s6,2.69,6,6 S15.31,18,12,18z"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -410,8 +517,8 @@
             'trove': {
                 title: 'Trove Interiors',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?interior,website,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?interior,website,mobile', type: 'Mobile' }
+                    { src: "Trove Interiors/images/trove1.jpg", type: 'Desktop' },
+                    { src: "Trove Interiors/images/trove2.jpg", type: 'Mobile' }
                 ],
                 purpose: 'A clean, luxury interior brand site with gallery and appointment form.',
                 features: [
@@ -426,8 +533,8 @@
             'ecosavvy': {
                 title: 'EcoSavvy Solutions',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?sustainability,website,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?sustainability,website,mobile', type: 'Mobile' }
+                    { src: 'Trove Interiors/images/ecosavvy1.jpg', type: 'Desktop' },
+                    { src: 'Trove Interiors/images/ecosavvy2.jpg', type: 'Mobile' }
                 ],
                 purpose: 'Modern sustainability company site with service breakdown and blog.',
                 features: [
@@ -442,8 +549,8 @@
             'urbanink': {
                 title: 'UrbanInk Studios',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?media,agency,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?media,agency,mobile', type: 'Mobile' }
+                    { src: 'Trove Interiors/images/UrbanInk1.jpg', type: 'Desktop' },
+                    { src: 'Trove Interiors/images/UrbanInk2.jpg', type: 'Mobile' }
                 ],
                 purpose: 'Media agency website with bold visuals, case studies, and client logos.',
                 features: [
@@ -458,8 +565,8 @@
             'fitfuel': {
                 title: 'FitFuel Corporate',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?health,website,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?health,website,mobile', type: 'Mobile' }
+                    { src: 'Trove Interiors/images/FitFuel-Corporate1.jpg', type: 'Desktop' },
+                    { src: 'Trove Interiors/images/FitFuel-Corporate2.jpg', type: 'Mobile' }
                 ],
                 purpose: 'Health brand website with programs, FAQs, and testimonials.',
                 features: [
@@ -474,8 +581,8 @@
             'cravefrost': {
                 title: 'Crave & Frost Enterprise',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?bakery,website,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?bakery,website,mobile', type: 'Mobile' }
+                    { src: 'Trove Interiors/images/crave1.jpg', type: 'Desktop' },
+                    { src: 'Trove Interiors/images/crave2.jpg', type: 'Mobile' }
                 ],
                 purpose: 'Professional landing site for bakery\'s B2B services and orders.',
                 features: [
@@ -490,8 +597,8 @@
             'techplug': {
                 title: 'TechPlug Systems',
                 screenshots: [
-                    { src: 'https://source.unsplash.com/random/800x600/?tech,consulting,desktop', type: 'Desktop' },
-                    { src: 'https://source.unsplash.com/random/400x800/?tech,consulting,mobile', type: 'Mobile' }
+                    { src: 'Trove Interiors/images/TechPlug1.jpg', type: 'Desktop' },
+                    { src: 'Trove Interiors/images/TechPlug2.jpg', type: 'Mobile' }
                 ],
                 purpose: 'Sleek IT consulting firm site with services, team bio, and inquiry form.',
                 features: [

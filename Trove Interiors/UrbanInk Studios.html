@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanInk Studios | Creative Media Agency</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --black: #000000;
+      --white: #FFFFFF;
+      --neon-green: #00FF9D;
+      --electric-blue: #00FFFF;
+      --deep-purple: #6A00FF;
+      --gray-100: #F5F5F5;
+      --gray-200: #E0E0E0;
+      --gray-700: #424242;
+      --transition: all 0.4s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--black);
+      background-color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Google Fonts Import */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800;900&family=Orbitron:wght@400;500;700&display=swap');
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 4.5rem;
+      letter-spacing: -2px;
+    }
+
+    h2 {
+      font-size: 3.5rem;
+      letter-spacing: -1px;
+    }
+
+    section {
+      padding: 8rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      background-color: var(--black);
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .hero-title {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -3px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--neon-green);
+      color: var(--black);
+      padding: 1.2rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .cta-button:hover {
+      background-color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      z-index: 10;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+      40% {transform: translateY(-20px) translateX(-50%);}
+      60% {transform: translateY(-10px) translateX(-50%);}
+    }
+
+    /* Services Section */
+    .services {
+      background-color: var(--white);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: relative;
+      display: block;
+      width: 80px;
+      height: 3px;
+      background-color: var(--neon-green);
+      margin: 1.5rem auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .service-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 3rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+
+    .service-card:nth-child(1)::before {
+      background-color: var(--neon-green);
+    }
+
+    .service-card:nth-child(2)::before {
+      background-color: var(--electric-blue);
+    }
+
+    .service-card:nth-child(3)::before {
+      background-color: var(--deep-purple);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--black);
+      margin-bottom: 2rem;
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      margin: 0 auto 2rem;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      background-color: var(--black);
+      transform: rotate(360deg);
+      color: var(--white);
+    }
+
+    /* Case Studies Section */
+    .case-studies {
+      background-color: var(--gray-100);
+      padding: 10rem 0;
+    }
+
+    .case-study-slider {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .case-study-slide {
+      display: none;
+      padding: 4rem 0;
+    }
+
+    .case-study-slide.active {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    .case-study-media {
+      flex: 1;
+      min-width: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .case-study-media img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .case-study-content {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .case-study-content h3 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .case-category {
+      color: var(--neon-green);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .case-description {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .case-metrics {
+      display: flex;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .metric {
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      display: block;
+      color: var(--black);
+    }
+
+    .metric-label {
+      color: var(--gray-700);
+    }
+
+    .case-link {
+      display: inline-flex;
+      align-items: center;
+      color: var(--deep-purple);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .case-link i {
+      margin-left: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .case-link:hover {
+      transform: translateX(5px);
+    }
+
+    .case-link:hover i {
+      transform: translateX(3px);
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 5;
+      padding: 0 2rem;
+    }
+
+    .slider-nav {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--black);
+      color: var(--white);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slider-nav:hover {
+      background-color: var(--neon-green);
+      transform: scale(1.1);
+    }
+
+    /* Client Logos Section */
+    .client-logos {
+      background-color: var(--white);
+      padding: 6rem 0;
+    }
+
+    .client-logos .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .logos-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .logo-item {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: var(--transition);
+      max-width: 150px;
+    }
+
+    .logo-item:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--black);
+      color: var(--white);
+      padding: 8rem 0;
+    }
+
+    .testimonials .section-header h2 {
+      color: var(--white);
+    }
+
+    .testimonials .section-header h2::after {
+      background-color: var(--neon-green);
+    }
+
+    .testimonial-slider {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-slide {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    .testimonial-slide.active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .quote-icon {
+      font-size: 3rem;
+      color: var(--neon-green);
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-text {
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .testimonial-author img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .author-info h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .author-info p {
+      color: var(--gray-200);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-dots {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--gray-200);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      background-color: var(--neon-green);
+      transform: scale(1.3);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--white);
+      padding: 10rem 0;
+    }
+
+    .contact-wrapper {
+      display: flex;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-info h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .info-item i {
+      font-size: 1.8rem;
+      margin-right: 1.5rem;
+      color: var(--neon-green);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--black);
+      color: var(--white);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background-color: var(--neon-green);
+      transform: translateY(-5px);
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--neon-green);
+      box-shadow: 0 0 0 3px rgba(0,255,157,0.2);
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: var(--black);
+      color: var(--white);
+      padding: 5rem 0 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-logo {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-logo img {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo p {
+      color: var(--gray-200);
+      max-width: 300px;
+    }
+
+    .footer-links {
+      flex: 2;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .link-group {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .link-group h4 {
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .link-group h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--neon-green);
+    }
+
+    .link-group ul {
+      list-style: none;
+    }
+
+    .link-group li {
+      margin-bottom: 0.8rem;
+    }
+
+    .link-group a {
+      color: var(--gray-200);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .link-group a:hover {
+      color: var(--white);
+      transform: translateX(5px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      h1 {
+        font-size: 4rem;
+      }
+      
+      h2 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 992px) {
+      section {
+        padding: 6rem 0;
+      }
+      
+      .case-study-slide {
+        flex-direction: column;
+      }
+      
+      .contact-wrapper {
+        flex-direction: column;
+      }
+      
+      .contact-info {
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+      
+      .info-item {
+        justify-content: center;
+      }
+      
+      .info-item i {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+      }
+      
+      section {
+        padding: 5rem 1rem;
+      }
+      
+      .hero-title {
+        font-size: 3rem;
+        letter-spacing: -1px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .service-card {
+        padding: 2rem;
+      }
+      
+      .case-metrics {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+        letter-spacing: -1px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .metric {
+        flex: 0 0 50%;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <video class="hero-video" autoplay muted loop>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-dramatic-city-at-night-500-large.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1 class="hero-title">Bringing Your Vision to Life</h1>
+      <p class="hero-subtitle">Creative media solutions for brands with bold ambitions</p>
+      <a href="#contact" class="cta-button">Start Creating</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>SCROLL DOWN</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- What We Do Section -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>What We Do</h2>
+        <p>Transforming ideas into impactful experiences</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-paint-brush"></i>
+          </div>
+          <h3>Branding & Identity</h3>
+          <p>Crafting distinctive visual identities that capture your brand essence</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3>Video Production</h3>
+          <p>Creating compelling visual narratives that engage your audience</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <h3>Digital Campaigns</h3>
+          <p>Strategic digital solutions that drive meaningful engagement</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Studies Section -->
+  <section id="case-studies" class="case-studies">
+    <div class="container">
+      <div class="section-header">
+        <h2>Case Studies</h2>
+        <p>Our work in action</p>
+      </div>
+      
+      <div class="case-study-slider">
+        <div class="case-study-slide active">
+          <div class="case-study-media">
+            <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Client Project">
+          </div>
+          <div class="case-study-content">
+            <h3>Rebrand for Urban Cellular</h3>
+            <span class="case-category">Branding & Digital Strategy</span>
+            <p class="case-description">Transformed a legacy telecom brand into a modern, youth-focused operator with a fresh visual identity and digital presence.</p>
+            <div class="case-metrics">
+              <div class="metric">
+                <span class="metric-value">72%</span>
+                <span class="metric-label">Brand Awareness</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">45%</span>
+                <span class="metric-label">Sales Growth</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">62%</span>
+                <span class="metric-label">Customer Engagement</span>
+              </div>
+            </div>
+            <a href="#" class="case-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="case-study-slide">
+          <div class="case-study-media">
+            <img src="https://cdn.dribbble.com/userupload/7111224/file/original-b14ca05badb8700c11cf7ea5b85c3bf4.jpg" alt="Client Project">
+          </div>
+          <div class="case-study-content">
+            <h3>Launch Campaign for Nexus Tech</h3>
+            <span class="case-category">Video Production & Digital Marketing</span>
+            <p class="case-description">Created an integrated campaign for the launch of a revolutionary consumer tech product, combining film, social media, and experiential marketing.</p>
+            <div class="case-metrics">
+              <div class="metric">
+                <span class="metric-value">90%</span>
+                <span class="metric-label">Campaign Reach</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">2.3M</span>
+                <span class="metric-label">Video Views</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">350%</span>
+                <span class="metric-label">Pre-orders</span>
+              </div>
+            </div>
+            <a href="#" class="case-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="case-study-slide">
+          <div class="case-study-media">
+            <img src="https://www.un.org/sites/un2.un.org/files/healthy-planet_updated524x350.png" alt="Client Project">
+          </div>
+          <div class="case-study-content">
+            <h3>Social Impact Campaign for Green Future</h3>
+            <span class="case-category">Content Strategy & Activism</span>
+            <p class="case-description">Developed a multi-platform campaign to raise awareness about environmental issues, featuring compelling storytelling and influencer partnerships.</p>
+            <div class="case-metrics">
+              <div class="metric">
+                <span class="metric-value">1.2M</span>
+                <span class="metric-label">Social Interactions</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">500K</span>
+                <span class="metric-label">Website Visits</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value">25%</span>
+                <span class="metric-label">Donation Increase</span>
+              </div>
+            </div>
+            <a href="#" class="case-link">View Full Case Study <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="slider-controls">
+          <button class="slider-nav prev"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-nav next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Logos Section -->
+  <section class="client-logos">
+    <div class="container">
+      <h2 class="section-title">Trusted By</h2>
+      <div class="logos-container">
+        <div class="logo-item">
+          <img src="https://via.placeholder.com/150x80?text=Client+1" alt="Client Logo">
+        </div>
+        <div class="logo-item">
+          <img src="https://via.placeholder.com/150x80?text=Client+2" alt="Client Logo">
+        </div>
+        <div class="logo-item">
+          <img src="https://via.placeholder.com/150x80?text=Client+3" alt="Client Logo">
+        </div>
+        <div class="logo-item">
+          <img src="https://via.placeholder.com/150x80?text=Client+4" alt="Client Logo">
+        </div>
+        <div class="logo-item">
+          <img src="https://via.placeholder.com/150x80?text=Client+5" alt="Client Logo">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Clients Say</h2>
+        <p>Hear from brands we've helped succeed</p>
+      </div>
+      
+      <div class="testimonial-slider">
+        <div class="testimonial-slide active">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">"UrbanInk Studios transformed our brand perception in just 6 months. Their strategic approach to visual storytelling has been a game-changer for our marketing efforts."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+            <div class="author-info">
+              <h4>Sarah Johnson</h4>
+              <p>Marketing Director, Urban Cellular</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-slide">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">"Working with UrbanInk was a seamless experience. Their creative vision aligned perfectly with our brand values and delivered results beyond our expectations."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+            <div class="author-info">
+              <h4>Michael Chen</h4>
+              <p>CEO, Nexus Tech</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-slide">
+          <div class="quote-icon">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          <p class="testimonial-text">"The team at UrbanInk Studios understood our mission from day one. Their campaign not only raised awareness but also engaged our target audience in a meaningful way."</p>
+          <div class="testimonial-author">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emma Rodriguez">
+            <div class="author-info">
+              <h4>Emma Rodriguez</h4>
+              <p>Founder, Green Future Initiative</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h2>Let's Create Something Great</h2>
+          <p>Ready to transform your brand? Let's discuss how we can bring your vision to life.</p>
+          
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <p>123 Creative Ave, Design District, City 10001</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <p>+1 (555) 123-4567</p>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <p>hello@urbaninkstudios.com</p>
+          </div>
+          
+          <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-behance"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="inquiry-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="project-type">Project Type</label>
+              <select id="project-type">
+                <option value="">Select a project type</option>
+                <option value="branding">Branding & Identity</option>
+                <option value="video">Video Production</option>
+                <option value="digital">Digital Campaign</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Project Details</label>
+              <textarea id="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="cta-button">Submit Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="https://via.placeholder.com/200x60?text=UrbanInk+Logo" alt="UrbanInk Studios">
+          <p>Creative media solutions for brands with bold ambitions</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Team</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">Branding</a></li>
+              <li><a href="#">Video Production</a></li>
+              <li><a href="#">Digital Campaigns</a></li>
+              <li><a href="#">Content Creation</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 UrbanInk Studios. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Form submission
+      const contactForm = document.getElementById('inquiry-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form values
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const projectType = document.getElementById('project-type').value;
+          const message = document.getElementById('message').value;
+          
+          // Simple validation
+          if (!name || !email || !projectType || !message) {
+            alert('Please fill out all fields');
+            return;
+          }
+          
+          // Form submission logic would go here (e.g., AJAX request)
+          
+          // Reset form after submission
+          contactForm.reset();
+          alert('Thank you for your inquiry! We will be in touch soon.');
+        });
+      }
+      
+      // Case study slider
+      const caseStudiesSlider = document.querySelector('.case-study-slider');
+      const prevButton = document.querySelector('.slider-nav.prev');
+      const nextButton = document.querySelector('.slider-nav.next');
+      
+      if (caseStudiesSlider && prevButton && nextButton) {
+        let slideIndex = 0;
+        const slides = caseStudiesSlider.querySelectorAll('.case-study-slide');
+        
+        function showSlide(index) {
+          // Reset all slides
+          for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove('active');
+          }
+          
+          // Show active slide
+          slides[index].classList.add('active');
+        }
+        
+        prevButton.addEventListener('click', () => {
+          slideIndex = (slideIndex > 0) ? slideIndex - 1 : slides.length - 1;
+          showSlide(slideIndex);
+        });
+        
+        nextButton.addEventListener('click', () => {
+          slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
+          showSlide(slideIndex);
+        });
+        
+        // Initialize slider
+        showSlide(slideIndex);
+        
+        // Auto-advance slides
+        setInterval(() => {
+          slideIndex = (slideIndex < slides.length - 1) ? slideIndex + 1 : 0;
+          showSlide(slideIndex);
+        }, 5000);
+      }
+      
+      // Testimonial slider
+      const testimonialDots = document.querySelectorAll('.testimonial-dots .dot');
+      const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+      
+      if (testimonialDots.length && testimonialSlides.length) {
+        let activeTestimonial = 0;
+        
+        function showTestimonial(index) {
+          // Hide all testimonials
+          testimonialSlides.forEach(slide => {
+            slide.classList.remove('active');
+          });
+          
+          // Show active testimonial
+          testimonialSlides[index].classList.add('active');
+          
+          // Update active dot
+          testimonialDots.forEach(dot => dot.classList.remove('active'));
+          testimonialDots[index].classList.add('active');
+          
+          activeTestimonial = index;
+        }
+        
+        // Set up dot click events
+        testimonialDots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            showTestimonial(index);
+          });
+        });
+        
+        // Initialize first testimonial
+        showTestimonial(0);
+        
+        // Auto-advance testimonials
+        setInterval(() => {
+          let nextIndex = (activeTestimonial < testimonialSlides.length - 1) 
+            ? activeTestimonial + 1 
+            : 0;
+          showTestimonial(nextIndex);
+        }, 6000);
+      }
+      
+      // Scroll animations
+      function animateOnScroll() {
+        const elements = document.querySelectorAll('.service-card, .case-study-slide.active, .testimonial-slide.active');
+        
+        elements.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          
+          if (elementTop < windowHeight * 0.8) {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+          }
+        });
+      }
+      
+      // Initialize elements with opacity 0 and translateY
+      document.addEventListener('DOMContentLoaded', function() {
+        const elements = document.querySelectorAll('.service-card, .case-study-slide, .testimonial-slide');
+        elements.forEach(element => {
+          element.style.opacity = '0';
+          element.style.transform = 'translateY(20px)';
+          element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+      });
+      
+      window.addEventListener('scroll', animateOnScroll);
+      window.addEventListener('load', animateOnScroll);
+      
+      // Add scroll indicator animation
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', () => {
+          window.scrollTo({
+            top: window.innerHeight,
+            behavior: 'smooth'
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

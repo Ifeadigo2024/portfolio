@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitFuel Corporate | Health & Wellness Programs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --primary-green: #4CAF50;
+      --secondary-orange: #FF9800;
+      --light-green: #8BC34A;
+      --white: #FFFFFF;
+      --light-gray: #F5F5F5;
+      --dark-text: #333333;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark-text);
+      line-height: 1.6;
+      background-color: var(--white);
+    }
+
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@700;800&display=swap');
+
+    h1, h2, h3 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--primary-green);
+      color: var(--white);
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .cta-button:hover {
+      background-color: var(--light-green);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Navigation */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 0;
+      z-index: 1000;
+      background-color: rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      padding: 1rem 0;
+      background-color: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-green);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* Programs Section */
+    .programs {
+      background-color: var(--light-gray);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background-color: var(--primary-green);
+      margin: 1.5rem auto 0;
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .program-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .program-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .program-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .program-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .program-card:hover .program-image img {
+      transform: scale(1.1);
+    }
+
+    .program-content {
+      padding: 2rem;
+    }
+
+    .program-content h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-green);
+    }
+
+    /* FAQs Section */
+    .faqs {
+      background-color: var(--white);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .faq-question {
+      background-color: var(--light-gray);
+      padding: 1.5rem 2rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .faq-question:hover {
+      background-color: var(--light-green);
+      color: var(--white);
+    }
+
+    .faq-answer {
+      background-color: var(--white);
+      padding: 0 2rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 1.5rem 2rem;
+      max-height: 500px;
+    }
+
+    /* Success Stories Section */
+    .success-stories {
+      background-color: var(--light-gray);
+    }
+
+    .testimonials-slider {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .testimonial-slide {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .testimonial-slide.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .testimonial-content {
+      background-color: var(--white);
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .testimonial-content::before {
+      content: '\201C';
+      font-size: 5rem;
+      color: var(--light-green);
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      opacity: 0.3;
+    }
+
+    .testimonial-text {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .client-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .client-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      border: 3px solid var(--primary-green);
+    }
+
+    .client-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .client-name {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .client-results {
+      color: var(--primary-green);
+      font-weight: 600;
+    }
+
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition);
+    }
+
+    .slider-nav:hover {
+      background-color: var(--primary-green);
+      color: var(--white);
+    }
+
+    .prev-btn {
+      left: -25px;
+    }
+
+    .next-btn {
+      right: -25px;
+    }
+
+    /* Blog Section */
+    .blog {
+      background-color: var(--white);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .blog-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: var(--transition);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-image {
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.1);
+    }
+
+    .blog-content {
+      padding: 2rem;
+      background-color: var(--white);
+    }
+
+    .blog-date {
+      color: var(--secondary-orange);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .blog-title {
+      margin-bottom: 1rem;
+    }
+
+    .blog-excerpt {
+      margin-bottom: 1.5rem;
+    }
+
+    .read-more {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .read-more i {
+      margin-left: 0.5rem;
+      transition: var(--transition);
+    }
+
+    .read-more:hover i {
+      transform: translateX(5px);
+    }
+
+    /* Contact Section */
+    .contact {
+      background-color: var(--light-gray);
+    }
+
+    .contact-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .contact-info h2 {
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary-green);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background-color: var(--white);
+      color: var(--primary-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+
+    .social-link:hover {
+      background-color: var(--primary-green);
+      color: var(--white);
+      transform: translateY(-5px);
+    }
+
+    .contact-form {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: var(--white);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-logo {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-logo p {
+      margin-top: 1rem;
+      color: #ddd;
+    }
+
+    .footer-links {
+      flex: 2;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .link-group {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .link-group h4 {
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .link-group h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary-green);
+    }
+
+    .link-group ul {
+      list-style: none;
+    }
+
+    .link-group li {
+      margin-bottom: 0.8rem;
+    }
+
+    .link-group a {
+      color: #ddd;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .link-group a:hover {
+      color: var(--primary-green);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 3rem;
+      }
+      
+      h2 {
+        font-size: 2.2rem;
+      }
+      
+      .contact-wrapper {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-container {
+        padding: 0 1rem;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 2rem;
+        transform: translateY(-150%);
+        transition: var(--transition);
+        z-index: 999;
+      }
+      
+      .nav-links.active {
+        transform: translateY(0);
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      section {
+        padding: 4rem 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .cta-button {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+      
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="logo">FitFuel</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#faqs">FAQs</a></li>
+        <li><a href="#success">Success</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Transform Your Life with FitFuel</h1>
+      <p>Discover the power of fitness and nutrition to achieve your health goals</p>
+      <a href="#contact" class="cta-button">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="programs">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Programs</h2>
+        <p>Designed to help you achieve your health and fitness goals</p>
+      </div>
+      
+      <div class="programs-grid">
+        <div class="program-card">
+          <div class="program-image">
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Weight Loss Program">
+          </div>
+          <div class="program-content">
+            <h3>Weight Loss Program</h3>
+            <p>Our comprehensive weight management program combines personalized nutrition plans with effective workout routines to help you achieve your ideal weight.</p>
+            <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="program-card">
+          <div class="program-image">
+            <img src="https://images.unsplash.com/photo-1574680178050-55c6a6a96e0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Strength Training">
+          </div>
+          <div class="program-content">
+            <h3>Strength Training</h3>
+            <p>Build muscle, increase strength, and boost metabolism with our scientifically-backed strength training programs, suitable for all fitness levels.</p>
+            <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="program-card">
+          <div class="program-image">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Nutritional Coaching">
+          </div>
+          <div class="program-content">
+            <h3>Nutritional Coaching</h3>
+            <p>Our certified nutritionists create personalized meal plans to fuel your fitness journey, with options for various dietary preferences and restrictions.</p>
+            <a href="#" class="read-more">Learn More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section id="faqs" class="faqs">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about our programs</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How long are your programs?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Our programs are designed to be flexible. Most clients commit to 8-12 weeks for optimal results, but we offer options ranging from 4 weeks to 6 months depending on your goals and preferences.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Do I need gym equipment?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>All our programs can be customized to work with the equipment you have available. We offer home-friendly options that require minimal equipment, as well as gym-based plans for those with access to facilities.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What dietary restrictions can you accommodate?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Our nutrition plans can accommodate a wide variety of dietary needs including vegan, vegetarian, gluten-free, keto, and more. We work with your preferences and medical requirements to create a sustainable eating plan.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I track my progress?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We provide a comprehensive digital platform where you can log workouts, track nutrition, and monitor progress through regular assessments. Our coaches provide feedback and adjust your program as needed.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Can I join if I'm a beginner?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely! We specialize in helping people of all fitness levels achieve their goals. Our programs start with foundational training and gradually increase in intensity as your fitness improves.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Stories Section -->
+  <section id="success" class="success-stories">
+    <div class="container">
+      <div class="section-header">
+        <h2>Success Stories</h2>
+        <p>Real results from real people</p>
+      </div>
+      
+      <div class="testimonials-slider">
+        <div class="testimonial-slide active">
+          <div class="testimonial-content">
+            <p class="testimonial-text">"FitFuel transformed my life! I lost 45 pounds in 6 months and gained so much confidence. The personalized approach made all the difference."</p>
+          </div>
+          <div class="client-info">
+            <div class="client-image">
+              <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+            </div>
+            <h4 class="client-name">Sarah Johnson</h4>
+            <p class="client-results">Lost 45 lbs • 6 months</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">"The strength training program helped me build muscle and improve my overall fitness. I feel stronger and more energetic than I have in years!"</p>
+          </div>
+          <div class="client-info">
+            <div class="client-image">
+              <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+            </div>
+            <h4 class="client-name">Michael Chen</h4>
+            <p class="client-results">Gained 25 lbs muscle • 4 months</p>
+          </div>
+        </div>
+        
+        <div class="testimonial-slide">
+          <div class="testimonial-content">
+            <p class="testimonial-text">"The nutritional coaching helped me develop sustainable eating habits. I no longer feel restricted by diets but instead enjoy healthy foods that fuel my body."</p>
+          </div>
+          <div class="client-info">
+            <div class="client-image">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Jessica Williams">
+            </div>
+            <h4 class="client-name">Jessica Williams</h4>
+            <p class="client-results">20 lbs lost • 3 months</p>
+          </div>
+        </div>
+        
+        <button class="slider-nav prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-nav next-btn"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <div class="container">
+      <div class="section-header">
+        <h2>Health & Wellness Blog</h2>
+        <p>Expert advice to support your fitness journey</p>
+      </div>
+      
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Nutrition Tips">
+          </div>
+          <div class="blog-content">
+            <span class="blog-date">June 15, 2023</span>
+            <h3 class="blog-title">5 Nutrition Tips for Better Workouts</h3>
+            <p class="blog-excerpt">Learn how to fuel your body properly to maximize your workout performance and recovery.</p>
+            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Home Workouts">
+          </div>
+          <div class="blog-content">
+            <span class="blog-date">May 28, 2023</span>
+            <h3 class="blog-title">Effective Home Workouts Without Equipment</h3>
+            <p class="blog-excerpt">Discover how to get a full-body workout with just your bodyweight and a bit of space.</p>
+            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="blog-card">
+          <div class="blog-image">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Mental Health">
+          </div>
+          <div class="blog-content">
+            <span class="blog-date">April 10, 2023</span>
+            <h3 class="blog-title">The Connection Between Fitness and Mental Health</h3>
+            <p class="blog-excerpt">Explore how regular physical activity can improve your mental wellbeing and reduce stress.</p>
+            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get In Touch</h2>
+        <p>Ready to start your fitness journey?</p>
+      </div>
+      
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <h2>Let's Start Your Fitness Journey</h2>
+          <p>Contact us today to discuss your health and fitness goals. Our team of experts is ready to help you achieve the results you deserve.</p>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <p>123 Fitness Ave, Health City, HC 12345</p>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <p>+1 (555) 123-4567</p>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <p>info@fitfuel.com</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="inquiry-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone (optional)</label>
+              <input type="tel" id="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="interest">Interested In</label>
+              <select id="interest" required>
+                <option value="">Select a program</option>
+                <option value="weight-loss">Weight Loss Program</option>
+                <option value="strength">Strength Training</option>
+                <option value="nutrition">Nutritional Coaching</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" required></textarea>
+            </div>
+            
+            <button type="submit" class="cta-button">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <h2>FitFuel</h2>
+          <p>Your journey to better health starts today</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="link-group">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h4>Programs</h4>
+            <ul>
+              <li><a href="#">Weight Loss</a></li>
+              <li><a href="#">Strength Training</a></li>
+              <li><a href="#">Nutritional Coaching</a></li>
+              <li><a href="#">Group Classes</a></li>
+            </ul>
+          </div>
+          
+          <div class="link-group">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Success Stories</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 FitFuel. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Navbar Scroll Effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+      
+      // Close mobile menu when scrolling
+      if (window.scrollY > 50 && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // FAQ Accordion
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const faqItem = question.parentNode;
+        faqItem.classList.toggle('active');
+        
+        // Close other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem) {
+            item.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Testimonials Slider
+    const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      testimonialSlides.forEach(slide => slide.classList.remove('active'));
+      
+      if (index < 0) {
+        currentSlide = testimonialSlides.length - 1;
+      } else if (index >= testimonialSlides.length) {
+        currentSlide = 0;
+      } else {
+        currentSlide = index;
+      }
+      
+      testimonialSlides[currentSlide].classList.add('active');
+    }
+
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    // Auto slide every 5 seconds
+    setInterval(() => showSlide(currentSlide + 1), 5000);
+
+    // Form Submission
+    const contactForm = document.getElementById('inquiry-form');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Reset form after submission
+      contactForm.reset();
+      alert('Thank you for your inquiry! We will contact you soon.');
+    });
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu after clicking a link
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    // Animate sections on scroll
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.program-card, .blog-card, .testimonial-slide.active');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (elementTop < windowHeight - 100) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    }
+
+    // Initialize elements with opacity 0 and translateY
+    document.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('.program-card, .blog-card, .testimonial-slide');
+      elements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      });
+    });
+
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>

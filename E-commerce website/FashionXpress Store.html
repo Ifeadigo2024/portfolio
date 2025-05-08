@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FashionXpress Store - Trendy Fashion Online</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+    color: #111;
+    line-height: 1.5;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* NAVIGATION */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #d4af37;
+    letter-spacing: 3px;
+  }
+  .nav-menu {
+    display: flex;
+    gap: 32px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .nav-menu a {
+    position: relative;
+    padding: 8px 0;
+    color: #111;
+    transition: color 0.3s ease;
+  }
+  .nav-menu a:hover,
+  .nav-menu a:focus {
+    color: #d4af37;
+  }
+
+  /* Hero Banner */
+  .hero {
+    position: relative;
+    margin: 32px 0 48px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+  .hero img {
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-text {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+    transform: translateY(-50%);
+    max-width: 480px;
+    color: white;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+    font-family: 'Montserrat', sans-serif;
+  }
+  .hero-text h1 {
+    font-size: 3.6rem;
+    margin: 0 0 16px 0;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .hero-text p {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 24px 0;
+  }
+  .hero-text button {
+    background-color: #d4af37;
+    color: #111;
+    padding: 16px 36px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 40px;
+    border: none;
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.6);
+    transition: background-color 0.25s ease;
+  }
+  .hero-text button:hover,
+  .hero-text button:focus {
+    background-color: #b58f2d;
+  }
+
+  /* Filters */
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .filters button {
+    background: #f0eadb;
+    color: #333;
+    padding: 11px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(212,175,55,0.3);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .filters button.active,
+  .filters button:hover,
+  .filters button:focus {
+    background-color: #d4af37;
+    color: #111;
+    box-shadow: 0 3px 14px rgba(212,175,55,0.8);
+  }
+
+  /* Product Grid */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 60px;
+  }
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 13px 25px rgba(0,0,0,0.15);
+  }
+  .product-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+  .product-info {
+    padding: 20px 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .product-info h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 0 8px 0;
+    color: #111;
+  }
+  .product-info p {
+    color: #555;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    flex-grow: 1;
+  }
+  .product-info .price {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #d4af37;
+  }
+
+  /* Featured Collections */
+  .collections {
+    margin-bottom: 60px;
+  }
+  .collections h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    margin-bottom: 28px;
+    text-align: center;
+    color: #111;
+  }
+  .collection-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 28px;
+    padding-bottom: 14px;
+    scroll-behavior: smooth;
+  }
+  .collection-item {
+    min-width: 280px;
+    height: 180px;
+    border-radius: 16px;
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+  }
+  .collection-item:hover,
+  .collection-item:focus {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  }
+  .collection-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .collection-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 22px 28px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.65), transparent);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+  }
+
+  /* Customer Reviews */
+  .reviews {
+    margin-bottom: 60px;
+  }
+  .reviews h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    margin-bottom: 32px;
+    text-align: center;
+    color: #111;
+  }
+  .review-cards {
+    display: flex;
+    overflow-x: auto;
+    gap: 28px;
+    padding-bottom: 14px;
+    scroll-behavior: smooth;
+  }
+  .review-card {
+    background: #f9f7f2;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    padding: 28px 32px;
+    min-width: 360px;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 1rem;
+  }
+  .reviewer {
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+  .review-text {
+    font-style: italic;
+    flex-grow: 1;
+  }
+  .stars {
+    margin-top: 18px;
+    font-size: 1.4rem;
+    color: #d4af37;
+  }
+
+  /* Checkout Preview */
+  .checkout-preview {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: #d4af37;
+    border-radius: 50px;
+    box-shadow: 0 12px 24px rgba(212, 175, 55, 0.8);
+    padding: 18px 28px;
+    color: #111;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 100;
+  }
+  .checkout-preview:hover,
+  .checkout-preview:focus {
+    background-color: #b58f2d;
+  }
+  .checkout-icon {
+    font-size: 1.6rem;
+    font-weight: 900;
+  }
+
+  /* Scrollbar styles for horizontal scroll */
+  .collection-list::-webkit-scrollbar,
+  .review-cards::-webkit-scrollbar {
+    height: 8px;
+  }
+  .collection-list::-webkit-scrollbar-thumb,
+  .review-cards::-webkit-scrollbar-thumb {
+    background-color: #d4af37;
+    border-radius: 5px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .products {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .container {
+      padding: 0 28px;
+    }
+  }
+  @media (max-width: 768px) {
+    .hero {
+      height: 360px;
+    }
+    .hero img {
+      height: 360px;
+    }
+    .hero-text h1 {
+      font-size: 2.8rem;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+    }
+    .filters {
+      gap: 14px;
+    }
+    .filters button {
+      padding: 10px 18px;
+      font-size: 0.95rem;
+    }
+    .products {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+    .container {
+      padding: 0 16px;
+    }
+    .checkout-preview {
+      bottom: 24px;
+      right: 16px;
+      padding: 14px 22px;
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 480px) {
+    nav {
+      padding: 18px 16px;
+    }
+    .nav-menu {
+      display: none;
+    }
+    .hero-text {
+      left: 6%;
+      max-width: 90vw;
+    }
+    .products {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="logo" aria-label="FashionXpress Store Logo">FashionXpress</div>
+    <div class="nav-menu" role="navigation" aria-label="Primary navigation">
+      <a href="#collections">Collections</a>
+      <a href="#products">Products</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#checkout">Checkout</a>
+    </div>
+  </nav>
+
+  <main class="container" role="main">
+    <!-- Hero Banner -->
+    <section class="hero" aria-label="Hero banner with featured fashion promotion">
+      <img src="https://images.pexels.com/photos/2983467/pexels-photo-2983467.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650" alt="Fashion model in stylish clothes in city" loading="lazy" />
+      <div class="hero-text">
+        <h1>Elevate Your Style</h1>
+        <p>Discover Contemporary Looks for Every Occasion</p>
+        <button aria-label="Shop the collection">Shop Now</button>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <section aria-label="Filter product categories" id="filters">
+      <div class="filters" role="group" aria-label="Product category filters">
+        <button class="active" data-filter="all" aria-pressed="true" tabindex="0">All</button>
+        <button data-filter="women" aria-pressed="false" tabindex="0">Women</button>
+        <button data-filter="men" aria-pressed="false" tabindex="0">Men</button>
+        <button data-filter="accessories" aria-pressed="false" tabindex="0">Accessories</button>
+        <button data-filter="shoes" aria-pressed="false" tabindex="0">Shoes</button>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" aria-label="Product listings" class="products">
+      <article class="product-card" data-category="women" tabindex="0">
+        <img src="https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Elegant woman black dress" loading="lazy" />
+        <div class="product-info">
+          <h3>Black Evening Dress</h3>
+          <p>Gorgeous tailored design</p>
+          <div class="price">$129</div>
+        </div>
+      </article>
+      <article class="product-card" data-category="men" tabindex="0">
+        <img src="https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Man stylish casual outfit" loading="lazy" />
+        <div class="product-info">
+          <h3>Casual Blazer</h3>
+          <p>Comfort meets style</p>
+          <div class="price">$99</div>
+        </div>
+      </article>
+      <article class="product-card" data-category="accessories" tabindex="0">
+        <img src="https://images.pexels.com/photos/7431372/pexels-photo-7431372.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Luxury sunglasses and bag" loading="lazy" />
+        <div class="product-info">
+          <h3>Designer Sunglasses</h3>
+          <p>Protect your eyes in style</p>
+          <div class="price">$79</div>
+        </div>
+      </article>
+      <article class="product-card" data-category="shoes" tabindex="0">
+        <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Fashion sneakers white and gold" loading="lazy" />
+        <div class="product-info">
+          <h3>White Gold Sneakers</h3>
+          <p>Step into luxury</p>
+          <div class="price">$139</div>
+        </div>
+      </article>
+      <article class="product-card" data-category="women" tabindex="0">
+        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Stylish woman with handbag" loading="lazy" />
+        <div class="product-info">
+          <h3>Chic Handbag</h3>
+          <p>Minimalist design</p>
+          <div class="price">$89</div>
+        </div>
+      </article>
+      <article class="product-card" data-category="men" tabindex="0">
+        <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=480" alt="Man formal suit" loading="lazy" />
+        <div class="product-info">
+          <h3>Formal Suit</h3>
+          <p>Perfect fit for any occasion</p>
+          <div class="price">$220</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- Featured Collections -->
+    <section id="collections" class="collections" aria-label="Featured collections">
+      <h2>Featured Collections</h2>
+      <div class="collection-list">
+        <div class="collection-item" tabindex="0" role="button" aria-pressed="false">
+          <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=280" alt="Summer Collection" />
+          <div class="collection-overlay">Summer Vibes</div>
+        </div>
+        <div class="collection-item" tabindex="0" role="button" aria-pressed="false">
+          <img src="https://images.pexels.com/photos/2983461/pexels-photo-2983461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=280" alt="Winter Collection" />
+          <div class="collection-overlay">Winter Warmth</div>
+        </div>
+        <div class="collection-item" tabindex="0" role="button" aria-pressed="false">
+          <img src="https://images.pexels.com/photos/306105/pexels-photo-306105.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=280" alt="Accessories Collection" />
+          <div class="collection-overlay">Accessories</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section id="reviews" class="reviews" aria-label="Customer reviews">
+      <h2>What Our Customers Say</h2>
+      <div class="review-cards">
+        <article class="review-card" tabindex="0">
+          <div class="reviewer">Jessica L.</div>
+          <div class="review-text">"Amazing quality and style! Received so many compliments on my dress."</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </article>
+        <article class="review-card" tabindex="0">
+          <div class="reviewer">Mark T.</div>
+          <div class="review-text">"Fast shipping and great customer service. Highly recommend FashionXpress."</div>
+          <div class="stars" aria-label="4 stars">★★★★☆</div>
+        </article>
+        <article class="review-card" tabindex="0">
+          <div class="reviewer">Emily R.</div>
+          <div class="review-text">"Love the sneakers I got here! Comfortable and trendy."</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Checkout Preview -->
+  <button id="checkout" class="checkout-preview" aria-label="Proceed to checkout">
+    <span class="checkout-icon" aria-hidden="true">&#128722;</span>
+    Proceed to Checkout
+  </button>
+
+<script>
+  // Filter functionality
+  const filterButtons = document.querySelectorAll('.filters button');
+  const products = document.querySelectorAll('.product-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      const filter = btn.getAttribute('data-filter');
+
+      products.forEach(prod => {
+        if(filter === 'all' || prod.dataset.category === filter) {
+          prod.style.display = 'flex';
+        } else {
+          prod.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Checkout button action
+  const checkoutBtn = document.getElementById('checkout');
+  checkoutBtn.addEventListener('click', () => {
+    alert('Proceeding to smooth checkout process...');
+    // Here you could redirect or open a modal in a real store
+  });
+</script>
+</body>
+</html>
